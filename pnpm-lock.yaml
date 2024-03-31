@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@babel/traverse': 7.23.9
   node-fetch: ./external/node-fetch
@@ -9,104 +13,105 @@ patchedDependencies:
     hash: wkdrkxsvxf7wddaxrw2fvkchia
     path: patches/fastify-sse-v2@3.1.2.patch
 
-importers:
+dependencies:
+  '@azure/openai':
+    specifier: 1.0.0-beta.11
+    version: 1.0.0-beta.11
+  '@fastify/compress':
+    specifier: ^7.0.0
+    version: 7.0.0
+  '@google/generative-ai':
+    specifier: ^0.2.0
+    version: 0.2.0
+  '@iamtraction/google-translate':
+    specifier: ^2.0.1
+    version: 2.0.1
+  '@ifyour/deeplx':
+    specifier: ^0.1.17
+    version: 0.1.17
+  consola:
+    specifier: ^3.2.3
+    version: 3.2.3
+  destr:
+    specifier: ^2.0.2
+    version: 2.0.2
+  fastify:
+    specifier: ^4.26.0
+    version: 4.26.0
+  fastify-sse-v2:
+    specifier: ^3.1.2
+    version: 3.1.2(patch_hash=wkdrkxsvxf7wddaxrw2fvkchia)(fastify@4.26.0)
+  ofetch:
+    specifier: ^1.3.3
+    version: 1.3.3
+  openai:
+    specifier: ^4.26.0
+    version: 4.26.0
+  toml:
+    specifier: ^3.0.0
+    version: 3.0.0
+  uuid:
+    specifier: ^9.0.1
+    version: 9.0.1
+  zx:
+    specifier: ^7.2.3
+    version: 7.2.3
 
-  .:
-    dependencies:
-      '@azure/openai':
-        specifier: 1.0.0-beta.11
-        version: 1.0.0-beta.11
-      '@fastify/compress':
-        specifier: ^7.0.0
-        version: 7.0.0
-      '@google/generative-ai':
-        specifier: ^0.2.0
-        version: 0.2.0
-      '@ifyour/deeplx':
-        specifier: ^0.1.17
-        version: 0.1.17
-      consola:
-        specifier: ^3.2.3
-        version: 3.2.3
-      destr:
-        specifier: ^2.0.2
-        version: 2.0.2
-      fastify:
-        specifier: ^4.26.0
-        version: 4.26.0
-      fastify-sse-v2:
-        specifier: ^3.1.2
-        version: 3.1.2(patch_hash=wkdrkxsvxf7wddaxrw2fvkchia)(fastify@4.26.0)
-      ofetch:
-        specifier: ^1.3.3
-        version: 1.3.3
-      openai:
-        specifier: ^4.26.0
-        version: 4.26.0
-      toml:
-        specifier: ^3.0.0
-        version: 3.0.0
-      uuid:
-        specifier: ^9.0.1
-        version: 9.0.1
-      zx:
-        specifier: ^7.2.3
-        version: 7.2.3
-    devDependencies:
-      '@antfu/eslint-config':
-        specifier: ^2.6.2
-        version: 2.6.2(@vue/compiler-sfc@3.3.10)(eslint@8.56.0)(typescript@5.3.3)
-      '@rollup/plugin-commonjs':
-        specifier: ^25.0.7
-        version: 25.0.7(rollup@4.9.6)
-      '@rollup/plugin-json':
-        specifier: ^6.1.0
-        version: 6.1.0(rollup@4.9.6)
-      '@rollup/plugin-node-resolve':
-        specifier: ^15.2.3
-        version: 15.2.3(rollup@4.9.6)
-      '@rollup/plugin-typescript':
-        specifier: ^11.1.6
-        version: 11.1.6(rollup@4.9.6)(tslib@2.6.2)(typescript@5.3.3)
-      '@types/node':
-        specifier: ^20.11.16
-        version: 20.11.16
-      '@types/uuid':
-        specifier: ^9.0.8
-        version: 9.0.8
-      bumpp:
-        specifier: ^9.3.0
-        version: 9.3.0
-      eslint:
-        specifier: ^8.56.0
-        version: 8.56.0
-      esno:
-        specifier: ^4.0.0
-        version: 4.0.0
-      lint-staged:
-        specifier: ^15.2.0
-        version: 15.2.0
-      pnpm:
-        specifier: ^8.15.1
-        version: 8.15.1
-      rollup:
-        specifier: ^4.9.6
-        version: 4.9.6
-      rollup-plugin-esbuild:
-        specifier: ^6.1.1
-        version: 6.1.1(esbuild@0.19.5)(rollup@4.9.6)
-      simple-git-hooks:
-        specifier: ^2.9.0
-        version: 2.9.0
-      tslib:
-        specifier: ^2.6.2
-        version: 2.6.2
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-      unbuild:
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.3.3)
+devDependencies:
+  '@antfu/eslint-config':
+    specifier: ^2.6.2
+    version: 2.6.2(@vue/compiler-sfc@3.3.10)(eslint@8.56.0)(typescript@5.3.3)
+  '@rollup/plugin-commonjs':
+    specifier: ^25.0.7
+    version: 25.0.7(rollup@4.9.6)
+  '@rollup/plugin-json':
+    specifier: ^6.1.0
+    version: 6.1.0(rollup@4.9.6)
+  '@rollup/plugin-node-resolve':
+    specifier: ^15.2.3
+    version: 15.2.3(rollup@4.9.6)
+  '@rollup/plugin-typescript':
+    specifier: ^11.1.6
+    version: 11.1.6(rollup@4.9.6)(tslib@2.6.2)(typescript@5.3.3)
+  '@types/node':
+    specifier: ^20.11.16
+    version: 20.11.16
+  '@types/uuid':
+    specifier: ^9.0.8
+    version: 9.0.8
+  bumpp:
+    specifier: ^9.3.0
+    version: 9.3.0
+  eslint:
+    specifier: ^8.56.0
+    version: 8.56.0
+  esno:
+    specifier: ^4.0.0
+    version: 4.0.0
+  lint-staged:
+    specifier: ^15.2.0
+    version: 15.2.0
+  pnpm:
+    specifier: ^8.15.1
+    version: 8.15.1
+  rollup:
+    specifier: ^4.9.6
+    version: 4.9.6
+  rollup-plugin-esbuild:
+    specifier: ^6.1.1
+    version: 6.1.1(esbuild@0.19.5)(rollup@4.9.6)
+  simple-git-hooks:
+    specifier: ^2.9.0
+    version: 2.9.0
+  tslib:
+    specifier: ^2.6.2
+    version: 2.6.2
+  typescript:
+    specifier: ^5.3.3
+    version: 5.3.3
+  unbuild:
+    specifier: ^2.0.0
+    version: 2.0.0(typescript@5.3.3)
 
 packages:
 
@@ -1028,6 +1033,11 @@ packages:
       fast-uri: 2.3.0
     dev: false
 
+  /@fastify/busboy@2.1.1:
+    resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
+    engines: {node: '>=14'}
+    dev: false
+
   /@fastify/compress@7.0.0:
     resolution: {integrity: sha512-jo/NaBVHP1OXIf8Kmr3bZyYQB0gAIgcy5c8rRKTPjhklHO7lRs/6ZFckUVT0NtbKSvrTuIcmSkxYpjyv3FNHXA==}
     dependencies:
@@ -1079,6 +1089,13 @@ packages:
   /@humanwhocodes/object-schema@2.0.1:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
+
+  /@iamtraction/google-translate@2.0.1:
+    resolution: {integrity: sha512-kOTkt23zflxpgxLIe9tLvDU8IvNscXYbgMSXydNkZGWDtJ75YJiU3v7EBz+t7h/gSiY7sT5r4dlFkMrHCl+N6A==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      undici: 5.28.3
+    dev: false
 
   /@ifyour/deeplx@0.1.17:
     resolution: {integrity: sha512-3tu/OjqcnJ8T0x65pSO1CpV5lqliuP7sfzAOwC1RCQQCT0GjMfJ+yvHsBbrnVY02w04eIjk0Dpy3+bKVgohEpw==}
@@ -5100,6 +5117,13 @@ packages:
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
+  /undici@5.28.3:
+    resolution: {integrity: sha512-3ItfzbrhDlINjaP0duwnNsKpDQk3acHI3gVJ1z4fmwMK31k5G9OVIAMLSIaP6w4FaGkaAkN6zaQO9LUvZ1t7VA==}
+    engines: {node: '>=14.0'}
+    dependencies:
+      '@fastify/busboy': 2.1.1
+    dev: false
+
   /unist-util-stringify-position@2.0.3:
     resolution: {integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==}
     dependencies:
@@ -5316,7 +5340,3 @@ packages:
       which: 3.0.1
       yaml: 2.3.4
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

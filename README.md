@@ -46,7 +46,8 @@ See [Unblock Features](#unblock-features) and [Unblock Routes](#unblock-routes) 
   - [x] [Shortcut](#shortcut-translator) (Only for macOS)
   - [x] [AI](#ai-translator)
   - [x] DeepLX
-  - [x] LibreTranslate - [Official Website](https://libretranslate.com)
+  - [x] LibreTranslate
+  - [x] Google Translate
   - [ ] More?
 - [x] Cloud Sync
   - [x] iCloud Drive (Only for macOS)
@@ -281,6 +282,7 @@ You can also use the Hosts file to forward Raycast requests to the backend servi
 - [aaamoon/copilot-gpt4-service](https://github.com/aaamoon/copilot-gpt4-service)
 - [google/generative-ai-js](https://github.com/google/generative-ai-js)
 - [OwO-Network/DeepLX](https://github.com/OwO-Network/DeepLX)
+- [iamtraction/google-translate](https://github.com/iamtraction/google-translate)
 
 ## Author
 

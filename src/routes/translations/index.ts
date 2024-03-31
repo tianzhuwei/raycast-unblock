@@ -5,6 +5,7 @@ import { Debug } from '../../utils/log.util'
 import { TranslateWithDeepLX } from '../../features/translations/deeplx'
 import { TranslateWithLibreTranslate } from '../../features/translations/libre-translate'
 import { getConfig } from '../../utils/env.util'
+import { TranslateWithGoogle } from '../../features/translations/google'
 
 export function TranslationsRoute(fastify: FastifyInstance, opts: Record<any, any>, done: Function) {
   fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
@@ -24,6 +25,9 @@ export function TranslationsRoute(fastify: FastifyInstance, opts: Record<any, an
         break
       case 'libre_translate':
         res = await TranslateWithLibreTranslate(request)
+        break
+      case 'google':
+        res = await TranslateWithGoogle(request)
         break
       default:
         res = await TranslateWithDeepLX(request)

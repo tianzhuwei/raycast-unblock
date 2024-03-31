@@ -63,7 +63,7 @@ max_tokens = 100
 
 [Translate]
 # You can choose the default translation service from the following:
-# shortcut, deeplx, ai, libretranslate
+# shortcut, deeplx, ai, libretranslate, google
 # Default: deeplx
 default = "deeplx"
 
