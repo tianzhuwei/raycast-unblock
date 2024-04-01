@@ -4,4 +4,5 @@ export interface GeneralConfig {
   host?: string
   debug?: boolean
   logger?: boolean
+  watch?: boolean
 }

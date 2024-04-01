@@ -46,6 +46,20 @@ function checkDefault(env: Config) {
   return env
 }
 
+/**
+ * Injects environment variables from a configuration file.
+ *
+ * If the deprecated flag [--env] is used or if the environment variables 'ENV' or 'env' are set,
+ * a warning message is logged.
+ * The configuration file is specified using the [--config] flag or defaults to 'config.toml'.
+ * The configuration file is parsed and transformed into a JSON object.
+ * The JSON object is converted to lowercase and camel case.
+ * Default values are checked and applied.
+ * The resulting environment variables are stored in the 'config' property of the process.env object.
+ * If the 'legacy' property exists in the configuration object, deprecated keys are logged as warnings
+ * and their corresponding values are stored as environment variables.
+ * A warning message is logged to encourage the use of the new config format.
+ */
 export function injectEnv() {
   if (matchKeyInObject(argv, 'env') || process.env.ENV || process.env.env)
     consola.warn('You are using deprecated flag [--env]. It can\'t be used in this version anymore. Please use the new config format.')
@@ -65,6 +79,18 @@ export function injectEnv() {
       }
       consola.warn('Please use the new config format. Check the documentation for more information: https://github.com/wibus-wee/raycast-unblock#readme')
     }
+
+    if (env.general?.watch) {
+      consola.info('Config watch is enabled.')
+      fs.watchFile(config, () => {
+        consola.info('The configuration file has been changed. Updating the environment variables...')
+        injectEnv()
+      })
+    }
+  }
+  else {
+    consola.error(`The configuration file [${config}] doesn't exist.`)
+    process.exit(1)
   }
 }
 

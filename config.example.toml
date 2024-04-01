@@ -9,6 +9,9 @@ host = "0.0.0.0"
 debug = false
 # Fastify Logger
 logger = false
+# If you want the service to listen to the changes of the configuration file and update automatically,
+# you can set watch to true
+watch = false
 
 [AI]
 default = "copilot"
