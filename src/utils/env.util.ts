@@ -79,18 +79,21 @@ export function injectEnv() {
       }
       consola.warn('Please use the new config format. Check the documentation for more information: https://github.com/wibus-wee/raycast-unblock#readme')
     }
-
-    if (env.general?.watch) {
-      consola.info('Config watch is enabled.')
-      fs.watchFile(config, () => {
-        consola.info('The configuration file has been changed. Updating the environment variables...')
-        injectEnv()
-      })
-    }
   }
   else {
     consola.error(`The configuration file [${config}] doesn't exist.`)
     process.exit(1)
+  }
+}
+
+export function watchConfig() {
+  const config = matchKeyInObject(argv, 'config') || 'config.toml'
+  if (fs.existsSync(config)) {
+    consola.info('Watching the configuration file...')
+    fs.watchFile(config, () => {
+      consola.info('The configuration file has been changed. Updating the environment variables...')
+      injectEnv()
+    })
   }
 }
 

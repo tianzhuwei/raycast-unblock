@@ -3,13 +3,14 @@ import fs from 'node:fs'
 import packageJson from '../package.json'
 import { prepareSync } from './features/sync/pre'
 import { launch } from './launch'
-import { injectEnv } from './utils/env.util'
+import { injectEnv, watchConfig } from './utils/env.util'
 import { DATA, TMP } from './constants'
 import { prepareShortcutRunner } from './utils/shortcuts.util'
 import { prepareCache, registCache } from './utils/cache.util'
 import { Debug } from './utils/log.util'
 
 injectEnv()
+watchConfig()
 
 process.title = packageJson.name
 
