@@ -80,7 +80,7 @@ export function injectEnv() {
       consola.warn('Please use the new config format. Check the documentation for more information: https://github.com/wibus-wee/raycast-unblock#readme')
     }
   }
-  else {
+  else if (matchKeyInObject(argv, 'config')) { // Only exit if the flag [--config] is used
     consola.error(`The configuration file [${config}] doesn't exist.`)
     process.exit(1)
   }
