@@ -213,10 +213,15 @@ modify `[AI.OpenAI]` field in `config.toml` according to the following steps.
 
 ### GitHub Copilot
 
-> [!IMPORTANT]
-> Please follow the GitHub usage guidelines and stop using this feature! I have removed the relevant functionality.
+> [!CAUTION]
+> Please follow the GitHub usage guidelines and stop using this feature!
+>
+> **I have removed the relevant functionality.**
 
 Raycast Unblock provides a GitHub Copilot service, which can be used in Raycast feature.
+
+<details>
+  <summary>DEPRECATED CONTENT</summary>
 
 #### Usage
 
@@ -235,6 +240,8 @@ Or you can use [aaamoon/copilot-gpt4-service](htts://github.com/aaamoon/copilot-
 
 > [!NOTE]
 > You should set `AI.default` to `openai` in the `config.toml` file, and set `AI.OpenAI.baseUrl` to the address of the `copilot-gpt4-service` service.
+
+</details>
 
 ### Shortcut Translator
 
