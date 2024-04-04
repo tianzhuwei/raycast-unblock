@@ -15,8 +15,33 @@ Console.prototype.success = function (message: any, ...args: any[]) {
 
 function DebugConsole(mode: 'consola' | 'native', type: string, message: any, ...args: any[]) {
   const module = mode === 'native' ? console : consola
-  if (process.env.DEBUG || getConfig('general')?.debug)
-    return (module as any)[type](`[DEBUG]`, message, ...args)
+  if (process.env.DEBUG || getConfig('general')?.debug) {
+    if (typeof message === 'object') {
+      const newMessage = JSON.parse(JSON.stringify(message))
+      Object.keys(newMessage).forEach((key) => {
+        if (key.toLowerCase() === 'apikey')
+          newMessage[key] = '[***PROTECTED***]'
+        else if (typeof newMessage[key] === 'object')
+          newMessage[key] = removeSensitiveAPIKeyMessageHelper(newMessage[key])
+      })
+      return (module as any)[type](`[DEBUG]`, newMessage, ...args)
+    }
+    else {
+      return (module as any)[type](`[DEBUG]`, message, ...args)
+    }
+  }
+}
+
+function removeSensitiveAPIKeyMessageHelper(obj: any) {
+  if (typeof obj === 'object') {
+    Object.keys(obj).forEach((key) => {
+      if (key.toLowerCase() === 'apikey')
+        obj[key] = '[***PROTECTED***]'
+      else if (typeof obj[key] === 'object')
+        obj[key] = removeSensitiveAPIKeyMessageHelper(obj[key])
+    })
+  }
+  return obj
 }
 
 export const Debug = {
