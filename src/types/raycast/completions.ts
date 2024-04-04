@@ -1,5 +1,7 @@
 export interface RaycastCompletions {
   debug: boolean
+  image_generation_tool: true
+  web_search_tool: true
   locale: string
   messages: {
     author: string
