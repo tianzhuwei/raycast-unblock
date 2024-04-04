@@ -12,6 +12,10 @@ logger = false
 # If you want the service to listen to the changes of the configuration file and update automatically,
 # you can set watch to true
 watch = false
+# The location of the sync file, default is "icloud", and you can also set it to "local"
+# # The iCloud storage solution is only effective when deployed on the macOS client
+# # **iCloud storage solution** is the *default* option in *macOS* deployments
+sync = "icloud" # icloud / local
 
 [General.Https]
 # If you want to use HTTPS, you can set the following configuration

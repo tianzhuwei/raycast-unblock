@@ -91,8 +91,9 @@ export function watchConfig() {
   if (fs.existsSync(config)) {
     consola.info('Watching the configuration file...')
     fs.watchFile(config, () => {
-      consola.info('The configuration file has been changed. Updating the environment variables...')
       injectEnv()
+      consola.info('The configuration file has been changed. Updating the environment variables...')
+      consola.info(`💡 In some cases, you need to manually restart to apply your changes.`)
     })
   }
 }
