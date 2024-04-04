@@ -2,7 +2,6 @@ import type { FastifyReply, FastifyRequest } from 'fastify'
 import { getConfig } from '../../utils/env.util'
 import { GeminiChatCompletion } from '../../features/ai/completions/gemini'
 import { OpenAIChatCompletion } from '../../features/ai/completions/openai'
-import { CopilotChatCompletion } from '../../features/ai/completions/copilot'
 import type { RaycastCompletions } from '../../types/raycast/completions'
 
 export function Completions(request: FastifyRequest, reply: FastifyReply) {
@@ -19,8 +18,8 @@ export function Completions(request: FastifyRequest, reply: FastifyReply) {
       return GeminiChatCompletion(request, reply)
     case 'openai':
       return OpenAIChatCompletion(request, reply)
-    case 'copilot':
-      return CopilotChatCompletion(request, reply)
+    // case 'copilot':
+    //   return CopilotChatCompletion(request, reply)
     default:
       break
   }

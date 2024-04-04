@@ -14,12 +14,12 @@ logger = false
 watch = false
 
 [AI]
-default = "copilot"
+default = "openai"
 # If the parameter is not set in the specific AI service,
 # this value will be used
 # For example:
 #    If I don't set the temperature parameter in AI.OpenAI, this value will be used
-#    But if I set the temperature parameter in AI.Copilot, the temperature parameter in AI.Copilot will be used
+#    But if I set the temperature parameter in AI.Gemini, the temperature parameter in AI.Gemini will be used
 temperature = 0.5
 max_tokens = 100
 

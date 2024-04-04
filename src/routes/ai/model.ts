@@ -1,5 +1,5 @@
 import { getConfig } from '../../utils/env.util'
-import { GEMINI_SERVICE_PROVIDERS, GITHUB_COPILOT_3_5_TURBO, GITHUB_COPILOT_4, GITHUB_COPILOT_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
+import { GEMINI_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
 
 function generateRaycastAIServiceProviders() {
   const config = getConfig('ai')
@@ -20,8 +20,8 @@ function generateRaycastAIServiceProviders() {
   }
   if (config?.gemini && !config?.gemini?.disable)
     default_models.push(GEMINI_SERVICE_PROVIDERS)
-  if (config?.copilot && !config?.copilot?.disable)
-    default_models.push(GITHUB_COPILOT_SERVICE_PROVIDERS)
+  // if (config?.copilot && !config?.copilot?.disable)
+  //   default_models.push(GITHUB_COPILOT_SERVICE_PROVIDERS)
   return default_models.flat()
 }
 
@@ -45,21 +45,21 @@ function getDefaultInOpenAIModels() {
   return default_model
 }
 
-function getDefaultInCopilotModels() {
-  const defaultModel = getConfig('ai')?.copilot?.default.toLowerCase()
-  let model
-  if (defaultModel === 'gpt-3.5-turbo')
-    model = GITHUB_COPILOT_3_5_TURBO.id
-  else
-    model = GITHUB_COPILOT_4.id
+// function getDefaultInCopilotModels() {
+//   const defaultModel = getConfig('ai')?.copilot?.default.toLowerCase()
+//   let model
+//   if (defaultModel === 'gpt-3.5-turbo')
+//     model = GITHUB_COPILOT_3_5_TURBO.id
+//   else
+//     model = GITHUB_COPILOT_4.id
 
-  return {
-    chat: model,
-    quick_ai: model,
-    commands: model,
-    api: model,
-  }
-}
+//   return {
+//     chat: model,
+//     quick_ai: model,
+//     commands: model,
+//     api: model,
+//   }
+// }
 
 export function AIModels() {
   const config = getConfig('ai')
@@ -71,9 +71,9 @@ export function AIModels() {
     case 'gemini':
       default_models = RAYCAST_GEMINI_PRO_ONLY_MODELS
       break
-    case 'copilot':
-      default_models = getDefaultInCopilotModels()
-      break
+    // case 'copilot':
+    //   default_models = getDefaultInCopilotModels()
+    //   break
     default:
       default_models = getDefaultInOpenAIModels()
       break

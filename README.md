@@ -40,7 +40,7 @@ See [Unblock Features](#unblock-features) and [Unblock Routes](#unblock-routes) 
 - [x] AI Chat
   - [x] OpenAI (support Azure)
   - [x] Gemini
-  - [x] [GitHub Copilot](#github-copilot)
+  - [x] ~~[GitHub Copilot](#github-copilot)~~ `⚠️ Deprecated`
   - [ ] More?
 - [x] Translations
   - [x] [Shortcut](#shortcut-translator) (Only for macOS)
@@ -210,7 +210,11 @@ modify `[AI.OpenAI]` field in `config.toml` according to the following steps.
 3. set `azure_deployment_name = yourDeployment`
 
 `azure_deployment_name` is optional and when it isn't provided, using `req.body.model` as a substitute. It is useful when you want to use multiple models.
+
 ### GitHub Copilot
+
+> [!IMPORTANT]
+> Please follow the GitHub usage guidelines and stop using this feature! I have removed the relevant functionality.
 
 Raycast Unblock provides a GitHub Copilot service, which can be used in Raycast feature.
 

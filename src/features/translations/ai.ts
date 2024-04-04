@@ -2,7 +2,6 @@ import type { FastifyRequest } from 'fastify'
 import { GeminiGenerateContent } from '../ai/generate/gemini'
 import { getConfig } from '../../utils/env.util'
 import { OpenaiGenerateContent } from '../ai/generate/openai'
-import { CopilotGenerateContent } from '../ai/generate/copilot'
 import type { TranslateFrom, TranslateTo } from '../../types/raycast/translate'
 import { generateTranslationsPrompts } from './prompts'
 
@@ -26,9 +25,9 @@ export async function TranslateWithAI(request: FastifyRequest): Promise<Translat
     case 'gemini':
       content = await GeminiGenerateContent(prompts)
       break
-    case 'copilot':
-      content = await CopilotGenerateContent(prompts)
-      break
+    // case 'copilot':
+    //   content = await CopilotGenerateContent(prompts)
+    //   break
     case 'openai':
     default: {
       const model = getConfig('translate')?.ai?.model

@@ -6,7 +6,7 @@ import { launch } from './launch'
 import { injectEnv, watchConfig } from './utils/env.util'
 import { DATA, TMP } from './constants'
 import { prepareShortcutRunner } from './utils/shortcuts.util'
-import { prepareCache, registCache } from './utils/cache.util'
+import { prepareCache } from './utils/cache.util'
 import { Debug } from './utils/log.util'
 
 injectEnv()
@@ -52,8 +52,8 @@ Promise.all([
   Debug.success('Utils Preparation is done.')
 })
 
-Promise.all([
-  registCache('copilot'),
-]).then(() => {
-  Debug.success('Cache Registration is done.')
-})
+// Promise.all([
+//   registCache('copilot'),
+// ]).then(() => {
+//   Debug.success('Cache Registration is done.')
+// })

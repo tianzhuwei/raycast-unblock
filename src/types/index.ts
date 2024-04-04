@@ -4,7 +4,8 @@ export interface User {
 }
 
 export interface LegacyAIConfig {
-  type?: 'openai' | 'gemini' | 'custom' | 'copilot'
+  // type?: 'openai' | 'gemini' | 'copilot'
+  type?: 'openai' | 'gemini'
   key?: string
   endpoint?: string
   max_tokens?: string
