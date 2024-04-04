@@ -10,6 +10,7 @@ import { AIRoute } from './routes/ai'
 import { TranslationsRoute } from './routes/translations'
 import { Debug } from './utils/log.util'
 import { getConfig } from './utils/env.util'
+import { TrashRoute } from './routes/trash'
 
 const prefix = '/api/v1'
 
@@ -18,6 +19,7 @@ export async function launch() {
   const fastify = Fastify({ logger: config?.logger || false })
   fastify.register(FastifySSEPlugin)
 
+  fastify.register(TrashRoute)
   fastify.register(MeRoute, { prefix: `${prefix}/me` })
   fastify.register(AIRoute, { prefix: `${prefix}/ai` })
   fastify.register(TranslationsRoute, { prefix: `${prefix}/translations` })
