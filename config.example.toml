@@ -13,6 +13,16 @@ logger = false
 # you can set watch to true
 watch = false
 
+[General.Https]
+# If you want to use HTTPS, you can set the following configuration
+# enabled = true
+# # You can specify the host to the certificate file (auto generate mode)
+# host = '192.168.3.2'
+# # You can also specify the path to your existing certificate file
+# key = "path
+# cert = "path"
+# ca = "path"
+
 [AI]
 default = "openai"
 # If the parameter is not set in the specific AI service,

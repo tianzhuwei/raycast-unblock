@@ -5,4 +5,11 @@ export interface GeneralConfig {
   debug?: boolean
   logger?: boolean
   watch?: boolean
+  https?: {
+    enabled?: boolean
+    key?: string
+    cert?: string
+    ca?: string
+    host?: string
+  }
 }

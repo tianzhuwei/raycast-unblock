@@ -1,4 +1,6 @@
 import process from 'node:process'
+import path from 'node:path'
+import { readFileSync } from 'node:fs'
 import Fastify from 'fastify'
 import consola from 'consola'
 import { FastifySSEPlugin } from 'fastify-sse-v2'
@@ -12,11 +14,40 @@ import { Debug } from './utils/log.util'
 import { getConfig } from './utils/env.util'
 import { TrashRoute } from './routes/trash'
 
+import { type SelfSignedCertificate, createSelfSignedCertificate } from './utils/mkcert'
+
 const prefix = '/api/v1'
 
 export async function launch() {
   const config = getConfig('general')
-  const fastify = Fastify({ logger: config?.logger || false })
+
+  let certificate: SelfSignedCertificate | undefined
+  const enabled = config?.https?.enabled
+  const key = config?.https?.key
+  const cert = config?.https?.cert
+  const ca = config?.https?.ca
+  if (enabled) {
+    if (key && cert) {
+      certificate = {
+        key,
+        cert,
+        rootCA: ca,
+      }
+    }
+    else {
+      certificate = await createSelfSignedCertificate(config?.https?.host)
+    }
+  }
+  const https = {
+    key: certificate?.key ? readFileSync(path.resolve(certificate?.key), 'utf-8') : undefined,
+    cert: certificate?.cert ? readFileSync(path.resolve(certificate?.cert), 'utf-8') : undefined,
+    ca: certificate?.rootCA ? readFileSync(path.resolve(certificate?.rootCA), 'utf-8') : undefined,
+  }
+  const fastify = Fastify({
+    logger: config?.logger || false,
+    // @ts-expect-error certificate config
+    https: certificate ? https : undefined,
+  })
   fastify.register(FastifySSEPlugin)
 
   fastify.register(TrashRoute)
@@ -70,6 +101,10 @@ export async function launch() {
   consola.info(`Raycast Unblock`)
   consola.info(`Version: ${packageJson.version}`)
   consola.info('Server starting...')
+
+  if (!certificate && config?.port === 443)
+    consola.warn('You are trying to start the HTTPS protocol without a certificate, which may cause problems')
+
   fastify.listen({ port: config?.port || 3000, host: config?.host || '0.0.0.0' }, (err, address) => {
     if (err) {
       consola.error(err)
