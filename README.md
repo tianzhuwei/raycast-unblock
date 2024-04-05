@@ -38,10 +38,14 @@ See [Unblock Features](#unblock-features) and [Unblock Routes](#unblock-routes) 
 
 - [x] Pro Plan Logo
 - [x] AI Chat
-  - [x] OpenAI (support Azure)
-  - [x] Gemini
-  - [x] ~~[GitHub Copilot](#github-copilot)~~ `⚠️ Deprecated`
-  - [ ] More?
+  - [x] [Function Call](#function-call--alpha) <sup>`Only OpenAI`</sup> <sup>_**`🌊 Alpha`**_</sup>
+    - [x] Serp
+    - [x] Web Search
+  - [x] Services
+    - [x] OpenAI (support Azure)
+    - [x] Gemini
+    - [ ] ~~[GitHub Copilot](#github-copilot)~~ `⚠️ Deprecated`
+    - [ ] More?
 - [x] Translations
   - [x] [Shortcut](#shortcut-translator) (Only for macOS)
   - [x] [AI](#ai-translator)
@@ -128,7 +132,13 @@ node index.js --config /path/to/your/config.toml
 
 If you want to run it in the background, you can use `pm2` or `nohup`.
 
-### Use it with Surge
+### Universal Solution
+
+You can use Rewrite Header to rewrite Raycast's request to Raycast Unblock. This is a universal solution. Rewrite Header is a function that most proxy software have. However, it's important to note that:
+
+- Raycast Unblock's request cannot be processed by Rewrite Header, or it will cause an infinite loop.
+
+### Use it with Surge (Alternative)
 
 > [!WARNING]
 > In some cases, if you find that Raycast Unblock is not working properly, please go to the settings of Surge, and uncheck the last line `*` in `Surge -> HTTP -> Capture(捕获) -> Capture MITM Overrides(捕获 MITM 覆写)`, which is `Modify MITM Hostname`.
@@ -138,15 +148,18 @@ If you want to run it in the background, you can use `pm2` or `nohup`.
 3. Open Raycast and use the features in the Pro Plan.
 
 > [!NOTE]
-> At present, activation-script will not forward the requests of Translate to Raycast Unblock by default, but will immediately forward the requests to DeepLX in the script. If you need to use the translation function of Raycast Unblock, you need to modify the code manually, please refer to the documentation of activation-script for details.
+> Currently, activation-script will not forward the requests of `Translate` and `me` to Raycast Unblock by default. Instead, it will immediately forward the requests to DeepL or handle them itself in the script. You need to modify the code manually. Please refer to the documentation of activation-script for details.
 
 ### If you don't have Surge
 
 You need to throw all Raycast requests to the backend built by this project, but make sure that the backend can request Raycast Backend normally, because some functions need to request Raycast Backend once and then do it.
 
+- Recommend: [Universal Solution](#universal-solution)
+
 #### Other Proxy Tools
 
-You can refer to the code in [wibus-wee/activation-script](https://github.com/wibus-wee/activation-script) and port it to other agent tools to continue using MiTM to hijack.
+- You can use Rewrite Header to implement this function, but you need to make sure Raycast Unblock requests will not be processed by Rewrite Header, otherwise it will cause a dead loop.
+- Or You can refer to the code in [wibus-wee/activation-script](https://github.com/wibus-wee/activation-script) and port it to other agent tools to continue using MiTM to hijack.
 
 > [!NOTE]
 > If you are building the backend locally, please do not let your proxy tool proxy both Raycast's requests and the backend service's requests, as this will cause it to not work properly.
@@ -191,33 +204,6 @@ When it shows `The local CA is now installed in the system trust store! ⚡️`,
 
 > [!IMPORTANT]
 > Please note that **please specify the port as `443`**.
-
-### More
-
-#### Deploy to remote server
-
-Raycast Unblock can be deployed to a remote server, and then you can use it as a proxy server. But you need to modify the code in `activator.js` to make it work properly (if you are not using `Modify Hosts` method).
-
-```diff
-- "http://127.0.0.1:3000"
-+ "<Your Remote Server Address>"
-```
-
-You should replace `http://127.0.0.1:3000` with your remote server address.
-
-[Related Source Code](https://github.com/wibus-wee/activation-script/blob/main/src/modules/index.ts#L83C14-L83C35)
-
-#### Use `pm2`
-
-You can use `pm2` to manage the process. You can run `npm install -g pm2` to install it.
-
-For example:
-
-```bash
-# Your config.toml file should be in this directory, or you should set the `--config` parameter
-pm2 start index.mjs --name raycast-unblock
-pm2 start ./raycast-unblock-app --name raycast-unblock
-```
 
 ## Features
 
@@ -289,6 +275,25 @@ You can use AI to translate text in Raycast Translate feature. Prompts provided 
 
 - Pay attention to the request and usage issues, Translator may cause frequent requests to AI services, resulting in overuse or rate limit, so please use it carefully.
 
+### Function Call <sup>*`🌊 Alpha`*</sup>
+
+> [!NOTE]
+> Only supports OpenAI.
+
+You can use the function call feature in AI Chat, which is currently in the `🌊 Alpha` stage.
+
+> Due to time constraints, **Azure OpenAI** is not supported for the time being. Contributions are welcome.
+
+#### Usage
+
+Now we support the following functions:
+
+- [x] `Serp` - Search Engine Results Page (Power by [ApyHub](https://apyhub.com/))
+- [x] `WebSearch` - Search for information from the internet
+
+- You can control the started plug-ins by yourself. This requires you to configure the plugins configuration item in `[AI.Functions]` in the configuration file. The usage method is detailed in the configuration example.
+- You can find the environment variables which are required to use features in the `config.example.toml` file.
+
 ## Q&A
 
 ### I don't want to install Node.js, how can I use it?
@@ -301,7 +306,8 @@ You can use the `app` type dist, which is a single application, and does **not r
 
 ### I don't buy Surge, how can I use it?
 
-Referring to the relevant code of [activation-script](https://github.com/wibus-wee/activation-script/blob/main/src/modules/index.ts#L70-L89) and porting it to other agent tools to continue using MiTM to hijack.
+- Referring to the relevant code of [activation-script](https://github.com/wibus-wee/activation-script/blob/main/src/modules/index.ts#L70-L89) and porting it to other agent tools to continue using MiTM to hijack.
+- Or you can use Rewrite Header to implement this function, but you need to make sure Raycast Unblock requests will not be processed by Rewrite Header, otherwise it will cause a dead loop
 
 You can also use the Hosts file to forward Raycast requests to the backend service of Raycast Unblock.
 

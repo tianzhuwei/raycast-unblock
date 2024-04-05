@@ -2,9 +2,19 @@ export interface AIConfig {
   default?: string
   temperature?: number
   maxTokens?: number
+  functions?: AIServiceFunctionsConfig
   openai?: OpenAIServiceConfig
   gemini?: GeminiServiceConfig
   copilot?: CopilotServiceConfig
+}
+export interface AIServiceFunctionsConfig {
+  plugins?: {
+    [key: string]: string
+  }
+  serp?: {
+    apiHubApiKey?: string
+    tavilyAiApiKey?: string
+  }
 }
 export interface AIServiceConfig {
   disable?: boolean

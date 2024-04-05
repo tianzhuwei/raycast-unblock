@@ -37,6 +37,20 @@ default = "openai"
 # temperature = 0.5
 # max_tokens = 100
 
+[AI.Functions]
+# You should enter plugin IDs that you want to enable here.
+# The following plugins are supported:
+# serp, web_search
+# You can go to src/features/ai/functionsCall to see more details.
+plugins = [
+  'serp',
+  'web_search'
+]
+
+[AI.Functions.Serp]
+apiHub_api_key = ""
+# tavily_ai_api_key = "" # Tavily currently doesn't support.
+
 [AI.OpenAI]
 # If the default model is not set,
 # or...
