@@ -15,7 +15,7 @@ export interface AIServiceFunctionsConfig {
     [key: string]: string
   }
   serp?: {
-    apiHubApiKey?: string
+    apyHubApiKey?: string
     tavilyAiApiKey?: string
   }
 }

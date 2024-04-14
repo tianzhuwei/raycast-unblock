@@ -5,7 +5,7 @@ services:
     container_name: raycast-unblock
     # ## You can also add arguments to the command line here, such as the following
     # ## If you need to use config.toml file, please uncomment the following line ####
-    command: --config=./config/config.toml
+    command: --config=./configs/config.toml
     image: wibuswee/raycast-unblock:latest
     environment:
       - TZ=Asia/Shanghai
@@ -14,7 +14,7 @@ services:
       # - HTTPS_PROXY=
     # ## If you need to use config.toml file, please uncomment the following line ####
     volumes:
-      - ./configs/raycast-unblock:/app/config
+      - ./configs:/app/config
       # If you want to operate the Sync file, you can uncomment the following line
       # - ./raycast_sync:/root/raycast_sync
     ports:

@@ -40,8 +40,7 @@ async function refreshJWT() {
   })
   const newJwt = res.data.session_jwt
   const now = new Date()
-  const hoursToAdd = 1
-  const expiresAt = new Date(now.setHours(now.getHours() + hoursToAdd))
+  const expiresAt = new Date(now.setMinutes(now.getMinutes() + 5))
   const store = {
     jwt: newJwt,
     expiresAt,

@@ -5,7 +5,7 @@ import type { IAvailableFunction } from '../../../../types/internal/i-available-
 export async function Serp(query: string) {
   const payload = JSON.stringify({ keyword: query })
   const headers = {
-    'apy-token': getConfig('ai', 'functions.serp.apihubApiKey') as string,
+    'apy-token': getConfig('ai', 'functions.serp.apyhubApiKey') as string,
   }
   const res = await ofetch('https://api.apyhub.com/extract/serp/rank', {
     method: 'POST',
@@ -56,7 +56,7 @@ export const SerpConfig: IAvailableFunction = {
   ],
   required: ['query'],
   requiredEnv: [
-    'ai.functions.serp.apihubApiKey',
+    'ai.functions.serp.apyhubApiKey',
     // 'ai.functions.serp.tavilyAiApiKey',
   ],
 }

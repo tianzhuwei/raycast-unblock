@@ -48,7 +48,7 @@ plugins = [
 ]
 
 [AI.Functions.Serp]
-apiHub_api_key = ""
+apyHub_api_key = ""
 # tavily_ai_api_key = "" # Tavily currently doesn't support.
 
 [AI.OpenAI]
