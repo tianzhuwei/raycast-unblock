@@ -10,7 +10,7 @@ You can use Rewrite Header to rewrite Raycast's request to Raycast Unblock. This
 Raycast Unblock's request **_cannot be processed_** by Rewrite Header, or it will cause an infinite loop.
 :::
 
-比如，在 Surge 中，你可以给你的配置文件中加入类似于如下的内容：
+For example, in Surge, you can add content like the following to your configuration file:
 
 ```txt
 [URL Rewrite]
