@@ -88,6 +88,11 @@ api_key = "YOUR_API_KEY"
 # image_generation = true # Not supported yet
 # web_search = true # The premise is that the model needs to support Function Call.
 
+[AI.Groq]
+# refresh_token = '<your refresh token>'
+# temperature = 0.5
+# max_tokens = 100
+
 [AI.Gemini]
 api_key = ""
 # temperature = 0.5
@@ -115,7 +120,7 @@ default = "deeplx"
 # Default: openai
 default = "openai"
 # The model used by the AI service
-# (only effective for openai)
+# (only effective for openai, groq)
 # Default: gpt-3.5-turbo
 model = "gpt-3.5-turbo"
 
@@ -129,13 +134,3 @@ type = "reserve"
 api_key = ""
 # The following is for the legacy configuration
 # They will be removed in the future
-
-# They are for the legacy configuration
-# YOU SHOULD NOT USE THEM
-# THEY WILL CAUSE WARNING IN LOGS
-# [Legacy]
-# ai_type = "OpenAI"
-# ai_api_key = ""
-# openai_base_url = "https://api.openai.com"
-# ai_max_tokens = 100
-# ai_temperature = 0.5

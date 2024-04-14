@@ -42,10 +42,9 @@ See [Unblock Features](#unblock-features) and [Unblock Routes](#unblock-routes) 
     - [x] Serp
     - [x] Web Search
   - [x] Services
-    - [x] OpenAI (support Azure)
+    - [x] OpenAI (Support Azure OpenAI)
     - [x] Gemini
-    - [ ] ~~[GitHub Copilot](#github-copilot)~~ `⚠️ Deprecated`
-    - [ ] More?
+    - [x] [Groq Web](#groq-web)
 - [x] Translations
   - [x] [Shortcut](#shortcut-translator) (Only for macOS)
   - [x] [AI](#ai-translator)
@@ -250,6 +249,15 @@ Or you can use [aaamoon/copilot-gpt4-service](htts://github.com/aaamoon/copilot-
 > You should set `AI.default` to `openai` in the `config.toml` file, and set `AI.OpenAI.baseUrl` to the address of the `copilot-gpt4-service` service.
 
 </details>
+
+## Groq Web
+
+### Usage
+
+-  Open https://groq.com/ and log in. Open the Network tab in the console. Refresh the page.
+-  Locate the `https://web.stytch.com/sdk/v1/sessions/authenticate` request in the Network tab. Look for the `Authorization` header in the request.
+-  Copy the value of the `Authorization` header, which will be in the format `Basic xxx`.
+-  In your configuration file, set `ai.groq.refreshToken` to the copied value (a placeholder value is already provided in the example configuration).
 
 ### Shortcut Translator
 

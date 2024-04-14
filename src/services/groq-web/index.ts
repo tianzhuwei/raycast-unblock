@@ -39,7 +39,9 @@ async function refreshJWT() {
     },
   })
   const newJwt = res.data.session_jwt
-  const expiresAt = res.data.session.expires_at
+  const now = new Date()
+  const hoursToAdd = 1
+  const expiresAt = new Date(now.setHours(now.getHours() + hoursToAdd))
   const store = {
     jwt: newJwt,
     expiresAt,
@@ -65,6 +67,9 @@ async function getGroqCacheAndAutoRefresh() {
 
 export async function generateGroqWebRequestHeader() {
   const cache = await getGroqCacheAndAutoRefresh() as GroqWebCache
+  if (!cache.orgId || cache.orgId === '')
+    throw new Error(`OrgId is empty.`)
+
   return {
     'Authorization': `Bearer ${cache.jwt}`,
     'Groq-App': 'chat',
