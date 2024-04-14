@@ -75,10 +75,18 @@ api_key = "YOUR_API_KEY"
 # Custom OpenAI Model
 # You can add your own OpenAI model just like the following:
 # # [NOTICE] You shouldn't use the dot in the model name. It will be parsed as a section
-# [AI.OpenAI.Models.gpt-3_5-turbo-16k-legacy]
-# id = "gpt-3.5-turbo-16k.legacy" # if it's not provided, it will be generated from the Object key. For example, here it will be "gpt-3.5-turbo-16k-legacy"
-# model = "gpt-3.5-turbo-16k.legacy" # if it's not provided, it will be generated from the Object key.
-# name = "Legacy GPT-3.5 Turbo" # if it's not provided, it will be generated from the Object key.
+# [AI.OpenAI.Models.GPT4]
+# id = "gpt-4-0125-preview" # if it's not provided, it will be generated from the Object key. For example, here it will be "gpt4"
+# model = "gpt-4-0125-preview" # if it's not provided, it will be generated from the Object key.
+# name = "GPT-4 (Preview)" # if it's not provided, it will be generated from the Object key.
+# description = "GPT-4 is OpenAI’s most capable model with broad general knowledge, allowing it to follow complex instructions and solve difficult problems.\n"
+# speed = 3  # if it's not provided, the default value will be used.
+# intelligence = 3  # if it's not provided, the default value will be used.
+# context = 8  # if it's not provided, the default value will be used.
+# status = beta
+# [AI.OpenAI.Models.GPT4.Capabilities] # Features control
+# image_generation = true # Not supported yet
+# web_search = true # The premise is that the model needs to support Function Call.
 
 [AI.Gemini]
 api_key = ""

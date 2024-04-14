@@ -1,6 +1,6 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { Debug } from '../../utils/log.util'
-import { AIModels } from './model'
+import { AIModels } from './models'
 import { Completions } from './completions'
 
 export function AIRoute(fastify: FastifyInstance, opts: Record<any, any>, done: Function) {

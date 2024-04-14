@@ -1,3 +1,5 @@
+import type { RaycastAIModel } from '../raycast/models'
+
 export interface AIConfig {
   default?: string
   temperature?: number
@@ -34,12 +36,13 @@ export interface CopilotServiceConfig extends AIServiceConfig {
   default: 'gpt-3.5-turbo' | 'gpt-4'
 }
 
-export interface AIServiceModelsConfig {
-  [key: string]: {
-    id?: string
-    model: string
-    name?: string
-    provider?: string
-    provider_name?: string
+interface AIModelConfig extends Omit<RaycastAIModel, 'capabilities'> {
+  capabilities: {
+    imageGeneration: boolean
+    webSearch: boolean
   }
+}
+
+export interface AIServiceModelsConfig {
+  [key: string]: AIModelConfig
 }
