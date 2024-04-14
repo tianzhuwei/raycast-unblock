@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/raycast-unblock/',
   title: 'Raycast Unblock',
   description: 'Unblock all features in Raycast Pro Plan with implementing similar functions in other ways.',
   themeConfig: {
