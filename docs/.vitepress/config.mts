@@ -7,6 +7,26 @@ export default defineConfig({
   lastUpdated: true,
   metaChunk: true,
   description: 'Unblock all features in Raycast Pro Plan with implementing similar functions in other ways.',
+  head: [
+    ['script', {
+      src: 'https://openpanel.dev/op.js',
+      defer: '',
+      async: '',
+    }],
+    ['script', {}, `window.op =
+      window.op ||
+      function (...args) {
+        (window.op.q = window.op.q || []).push(args);
+      };
+    window.op('ctor', {
+      clientId: 'e6fa1828-537a-4ade-bd7e-e78ef1ff4373',
+      trackScreenViews: true,
+      trackOutgoingLinks: true,
+      trackAttributes: true,
+    });
+    console.log('openpanel is ok!')
+    `],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
