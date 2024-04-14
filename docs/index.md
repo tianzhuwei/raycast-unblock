@@ -13,6 +13,9 @@ hero:
     - theme: alt
       text: Getting Started
       link: /guide/getting-started
+  image:
+    src: /icon.png
+    alt: Raycast Unblock
 
 features:
   - title: Customize AI Chat Models
@@ -25,3 +28,30 @@ features:
     icon: ☁️
     details: We also support cross-device synchronization using iCloud in Cloud Sync, and of course, we also provide a local storage option.
 ---
+
+<style>
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #aca68c 30%, #e0cca7);
+    --vp-home-hero-image-background-image: linear-gradient(-45deg, #949380 50%, #d4c4a1 50%);
+  --vp-home-hero-image-filter: blur(44px);
+  --vp-button-brand-bg: #aca68c !important;
+  --vp-button-brand-hover-bg: #949380 !important;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+  .image-src {
+    max-width: 256px !important;
+    max-height: 256px !important;
+  }
+}
+</style>

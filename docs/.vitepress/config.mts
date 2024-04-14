@@ -4,6 +4,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/raycast-unblock/',
   title: 'Raycast Unblock',
+  lastUpdated: true,
+  metaChunk: true,
   description: 'Unblock all features in Raycast Pro Plan with implementing similar functions in other ways.',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -18,6 +20,8 @@ export default defineConfig({
         },
       ] },
     ],
+
+    logo: { src: '/icon.png', width: 24, height: 24 },
 
     sidebar: [
       {
@@ -46,5 +50,9 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/wibus-wee/raycast-unblock' },
     ],
+
+    search: {
+      provider: 'local',
+    },
   },
 })

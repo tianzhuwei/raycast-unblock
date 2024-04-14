@@ -1,6 +1,6 @@
 # Raycast Unblock
 
-<img align="right" src="https://github.com/wibus-wee/raycast-unblock/assets/62133302/6dc8e074-c605-483b-8f24-e87109fc3ec5" height="150">
+<img align="right" src="./.github/icon.png" height="150">
 
 [![Version][package-version-src]][package-version-href]
 [![License][license-src]][license-href]
