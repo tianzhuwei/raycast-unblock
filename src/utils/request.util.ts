@@ -2,6 +2,7 @@ import process from 'node:process'
 import consola from 'consola'
 import type { $Fetch } from 'ofetch'
 import { ofetch } from 'ofetch'
+import { GROQ_API_ENDPOINT } from '../services/groq-web/constants'
 import { Debug } from './log.util'
 
 // Disable SSL verification. (Local Server)
@@ -14,7 +15,18 @@ export const httpClient: $Fetch = ofetch.create({
   },
   onRequestError: (ctx) => {
     consola.error(`[Raycast Backend] Request error`)
-    console.error(ctx.error)
+    console.error(ctx)
+  },
+})
+
+export const groqClient: $Fetch = ofetch.create({
+  baseURL: GROQ_API_ENDPOINT,
+  onRequest: (ctx) => {
+    Debug.info(`[Groq] Request: ${ctx.request}`)
+  },
+  onRequestError: (ctx) => {
+    consola.error(`[Groq] Request error`)
+    console.error(ctx)
   },
 })
 
@@ -25,7 +37,7 @@ export const copilotClient: $Fetch = ofetch.create({
   },
   onRequestError: (ctx) => {
     consola.error(`[GitHub Copilot] Request error`)
-    console.error(ctx.error)
+    console.error(ctx)
   },
 })
 

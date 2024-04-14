@@ -1,6 +1,6 @@
 import type { RaycastAIModel } from '../../types/raycast/models'
 import { getConfig } from '../../utils/env.util'
-import { GEMINI_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
+import { GEMINI_SERVICE_PROVIDERS, GROQ_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_GROQ_MODELS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
 
 function generateRaycastAIServiceProviders() {
   const config = getConfig('ai')
@@ -39,6 +39,8 @@ function generateRaycastAIServiceProviders() {
   }
   if (config?.gemini && !config?.gemini?.disable)
     default_models.push(...GEMINI_SERVICE_PROVIDERS)
+  if (config?.groq && !config?.groq.disable)
+    default_models.push(...GROQ_SERVICE_PROVIDERS)
   // if (config?.copilot && !config?.copilot?.disable)
   //   default_models.push(GITHUB_COPILOT_SERVICE_PROVIDERS)
   return default_models.flat()
@@ -89,6 +91,9 @@ export function AIModels() {
       break
     case 'gemini':
       default_models = RAYCAST_GEMINI_PRO_ONLY_MODELS
+      break
+    case 'groq':
+      default_models = RAYCAST_DEFAULT_GROQ_MODELS
       break
     // case 'copilot':
     //   default_models = getDefaultInCopilotModels()

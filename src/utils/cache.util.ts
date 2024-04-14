@@ -16,14 +16,14 @@ export function prepareCache() {
 
 export function registCache(name: string) {
   const dataPath = resolve(DATA, 'cache', `${name}.json`)
-  Debug.info('[Cache] Registering cache data folder...')
+  Debug.info('[Cache] Registering cache data file...', dataPath, fs.existsSync(dataPath))
   if (!fs.existsSync(dataPath))
     fs.writeFileSync(dataPath, '')
   Debug.success(`[Cache] ${name} is registered`)
   return dataPath
 }
 
-export function getCache(name: string, key?: string) {
+export function getCache<T>(name: string, key?: string): T | undefined {
   const dataPath = resolve(DATA, 'cache', `${name}.json`)
   const o = fs.readFileSync(dataPath, 'utf-8')
   const de = destr(o) as any

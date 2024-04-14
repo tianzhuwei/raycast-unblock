@@ -1,33 +1,17 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
-import destr from 'destr'
 import consola from 'consola'
-import { generateCopilotRequestHeader, getAuthFromToken } from '../../../services/copilot'
-import { copilotClient } from '../../../utils'
-import { processStream } from '../../../utils/stream-reader.util'
-import type { RaycastCompletions } from '../../../types/raycast/completions'
+import destr from 'destr'
 import { getConfig } from '../../../utils/env.util'
+import type { RaycastCompletions } from '../../../types/raycast/completions'
+import { generateGroqWebRequestHeader } from '../../../services/groq-web'
+import { groqClient } from '../../../utils'
+import { GROQ_API_COMPLETIONS, GROQ_API_ENDPOINT } from '../../../services/groq-web/constants'
+import { processStream } from '../../../utils/stream-reader.util'
 
-const completions = '/chat/completions'
-
-export async function CopilotChatCompletion(request: FastifyRequest, reply: FastifyReply) {
+export async function GroqWebCompletions(request: FastifyRequest, reply: FastifyReply) {
   const body = request.body as RaycastCompletions
   const aiConfig = getConfig('ai')
-  // @ts-expect-error removed
-  const config = getConfig('ai')?.copilot
-
-  const app_token = config?.apiKey
-  if (!app_token) {
-    consola.error(`[Copilot] Auth error: Missing token`)
-    throw new Error('Unauthorized. Missing token')
-  }
-
-  try {
-    await getAuthFromToken(app_token)
-  }
-  catch (e: any) {
-    consola.error(`[Copilot] Auth error: ${e.message}.`)
-    throw new Error(`Unauthorized. Invalid token. ${e.message}`)
-  }
+  const config = getConfig('ai')?.groq
 
   let temperature = config?.temperature || aiConfig?.temperature || 0.5
   const requestBody = {
@@ -35,11 +19,10 @@ export async function CopilotChatCompletion(request: FastifyRequest, reply: Fast
     model: body.model,
     temperature,
     top_p: 1,
-    n: 1,
     stream: true,
     max_tokens: config?.maxTokens || aiConfig?.maxTokens,
   }
-  const headers = generateCopilotRequestHeader(app_token, true) as Record<string, string>
+  const headers = await generateGroqWebRequestHeader()
   const messages = body.messages
   for (const message of messages) {
     if ('system_instructions' in message.content) {
@@ -82,18 +65,18 @@ export async function CopilotChatCompletion(request: FastifyRequest, reply: Fast
       temperature = message.content.temperature
   }
 
-  const res = await copilotClient.native(`https://api.githubcopilot.com${completions}`, {
+  const res = await groqClient.native(`${GROQ_API_ENDPOINT}${GROQ_API_COMPLETIONS}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(requestBody),
   })
     .catch((e: any) => {
-      consola.error(`[Copilot] Request error: ${e.message}.`)
+      consola.error(`[Groq-Web] Request error: ${e.message}.`)
       throw new Error(`Request error: ${e.message}`)
     })
 
   if (!res.ok) {
-    consola.error(`[Copilot] Request error: ${res.statusText}.`)
+    consola.error(`[Groq-Web] Request error: ${res.statusText}.`)
     throw new Error(`Request error: ${res.statusText}`)
   }
 

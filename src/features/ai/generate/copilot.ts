@@ -11,6 +11,7 @@ export async function CopilotGenerateContent(prompt: {
   content: string
 }[], msg?: string): Promise<AIGenerateContent> {
   const aiConfig = getConfig('ai')
+  // @ts-expect-error removed
   const config = getConfig('ai')?.copilot
 
   const messages = []
