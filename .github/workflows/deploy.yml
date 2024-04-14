@@ -3,9 +3,15 @@ name: Deploy
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - src/**
+      - test/**
+      - README.md
+      - LICENSE
+      - .github/workflows/release.yml
   workflow_dispatch:
 
-permission:
+permissions:
   write-all
 
 jobs:
