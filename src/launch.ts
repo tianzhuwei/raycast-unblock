@@ -5,6 +5,7 @@ import Fastify from 'fastify'
 import consola from 'consola'
 import { FastifySSEPlugin } from 'fastify-sse-v2'
 import fastifyCompress from '@fastify/compress'
+import fastifyCron from 'fastify-cron'
 import packageJson from '../package.json'
 import { MeRoute } from './routes/me'
 import { httpClient } from './utils'
@@ -15,6 +16,7 @@ import { getConfig } from './utils/env.util'
 import { TrashRoute } from './routes/trash'
 
 import { type SelfSignedCertificate, createSelfSignedCertificate } from './utils/mkcert'
+import { cronJobs } from './cron-jobs'
 
 const prefix = '/api/v1'
 
@@ -48,7 +50,11 @@ export async function launch() {
     // @ts-expect-error certificate config
     https: certificate ? https : undefined,
   })
+
   fastify.register(FastifySSEPlugin)
+  fastify.register(fastifyCron, {
+    jobs: cronJobs,
+  })
 
   fastify.register(TrashRoute)
   fastify.register(MeRoute, { prefix: `${prefix}/me` })
@@ -106,6 +112,7 @@ export async function launch() {
     consola.warn('You are trying to start the HTTPS protocol without a certificate, which may cause problems')
 
   fastify.listen({ port: config?.port || 3000, host: config?.host || '0.0.0.0' }, (err, address) => {
+    fastify.cron.startAllJobs()
     if (err) {
       consola.error(err)
       process.exit(1)
