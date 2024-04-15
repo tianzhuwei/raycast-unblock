@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.DCrfWSmk.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"features/index.md","filePath":"features/index.md","lastUpdated":1713108769000}'),r={name:"features/index.md"};function s(n,o,d,c,i,p){return a(),t("div")}const m=e(r,[["render",s]]);export{_ as __pageData,m as default};
