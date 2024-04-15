@@ -13,7 +13,7 @@ function generateRaycastAIServiceProviders() {
           [key: string]: string | undefined
         } = {}
 
-        for (const [key, val] of Object.entries(value.capabilities))
+        for (const [key, val] of Object.entries(value.capabilities || {}))
           capabilities[key] = val ? 'full' : undefined
 
         return ({
