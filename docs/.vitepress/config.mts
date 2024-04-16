@@ -32,7 +32,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/what-is-raycast-unblock' },
-      { text: 'Features', link: '/features/' },
+      // { text: 'Features', link: '/features/' },
       { text: 'About', items: [
         {
           text: 'Q&A',
@@ -53,18 +53,27 @@ export default defineConfig({
         ],
       },
       {
-        text: 'Features',
+        text: 'Feature - AI',
         items: [
-          { text: 'AI Translator', link: '/features/ai-translator' },
+          { text: 'Azure OpenAI', link: '/features/azure-openai' },
           { text: 'Function Call', link: '/features/function-call' },
           { text: 'Groq Web', link: '/features/groq-web' },
-          { text: 'iCloud Drive', link: '/features/icloud-drive' },
-          { text: 'Shortcut Translator', link: '/features/shortcut-translator' },
-          { text: 'LibreTranslate', link: '/features/libre-translate' },
-          { text: 'Azure OpenAI', link: '/features/azure-openai' },
         ],
       },
-
+      {
+        text: 'Feature - Translator',
+        items: [
+          { text: 'AI Translator', link: '/features/ai-translator' },
+          { text: 'LibreTranslate', link: '/features/libre-translate' },
+          { text: 'Shortcut Translator', link: '/features/shortcut-translator' },
+        ],
+      },
+      {
+        text: 'Feature - Cloud Sync',
+        items: [
+          { text: 'iCloud Drive', link: '/features/icloud-drive' },
+        ],
+      },
     ],
 
     socialLinks: [
