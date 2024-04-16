@@ -39,7 +39,7 @@ wget https://github.com/wibus-wee/raycast-unblock/raw/main/config.example.toml -
 docker run -d \
   --name raycast-unblock \
   -p 3000:3000 \
-  --config ./config.toml:/app/config.toml \
+  -v ./config.toml:/app/config.toml \
   wibuswee/raycast-unblock:latest
 ```
 :::
