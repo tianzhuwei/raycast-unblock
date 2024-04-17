@@ -4,6 +4,7 @@
     "local>Innei/renovate-config"
   ],
   "ignoreDeps": [
-    "fastify-sse-v2"
+    "fastify-sse-v2",
+    "zx"
   ]
 }
