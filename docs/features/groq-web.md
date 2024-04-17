@@ -1,4 +1,4 @@
-# Groq Web
+# Groq Web <Badge type="tip" text="^0.4.0-beta.0" />
 
 Raycast Unblock offers Groq Web AI support. You can use Groq's models for free via their Web API.
 

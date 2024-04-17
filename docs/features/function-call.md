@@ -1,8 +1,4 @@
----
-title: Function Call
----
-
-# Function Call <sup>*`🌊 Alpha`*</sup>
+# Function Call <Badge type="tip" text="^0.4.0-beta.0" /> <Badge type="warning" text="Beta" />
 
 > [!NOTE]
 > Only supports OpenAI.
@@ -24,7 +20,7 @@ You can find the environment variables which are required to use features in the
 
 ## Configuration
 
-- `[AI.Functions].disable`: Disable the function call feature.
+- `[AI.Functions].disable`: Disable the function call feature. <Badge type="warning" text="^0.4.1-beta.0" />
 - `[AI.Functions].plugins`: A set of function call tools that are available for use.
 - `[AI.Functions].Serp`
   - `apyHub_api_key`: The API Key in apyHub
