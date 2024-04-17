@@ -24,6 +24,7 @@ You can find the environment variables which are required to use features in the
 
 ## Configuration
 
+- `[AI.Functions].disable`: Disable the function call feature.
 - `[AI.Functions].plugins`: A set of function call tools that are available for use.
 - `[AI.Functions].Serp`
   - `apyHub_api_key`: The API Key in apyHub
@@ -32,6 +33,7 @@ You can find the environment variables which are required to use features in the
 
 ```toml
 [AI.Functions]
+disable = false
 plugins = [
   'serp',
   'web_search'
