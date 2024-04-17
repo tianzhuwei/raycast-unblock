@@ -96,9 +96,13 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
       n: 1,
       max_tokens: openaiConfig?.maxTokens || aiConfig?.maxTokens,
     }
-
-    if (body.web_search_tool) {
-      Debug.info(`[AI] Function call tools: `, getFunctionCallToolsConfig())
+    const functionToolsConfig = getFunctionCallToolsConfig()
+    if (
+      body.web_search_tool
+      && !aiConfig?.functions?.disable
+      && functionToolsConfig.length > 0
+    ) {
+      Debug.info(`[AI] Function call tools: `, functionToolsConfig)
       Debug.info(`[AI] Web Search Tool option is on.`)
       // 在这里先做一次进行 Function Call
       // append 进 openai_message 里，再去做一次 steam 流，在 steam 中就可以不再加入 & 处理 tool_call 了
@@ -106,7 +110,7 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
         stream: false,
         messages: openai_message as any,
         ...chatConfig,
-        tools: getFunctionCallToolsConfig(),
+        tools: functionToolsConfig,
         tool_choice: 'auto',
       }).catch((err) => {
         throw new Error(`[AI] OpenAI Chat Completions (toolCallChainStep) Failed: ${err}`)

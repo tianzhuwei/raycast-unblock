@@ -11,6 +11,7 @@ export interface AIConfig {
   groq?: GroqServiceConfig
 }
 export interface AIServiceFunctionsConfig {
+  disable?: boolean
   plugins?: {
     [key: string]: string
   }
