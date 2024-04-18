@@ -17,6 +17,29 @@ For example, in Surge, you can add content like the following to your configurat
 https:\/\/backend.raycast.com http://192.168.x.x:3000 header
 ```
 
+## Use it with mitmproxy
+
+[mitmproxy](https://mitmproxy.org/) is a free and open source interactive HTTPS proxy. We can use it to intercept Raycast's requests and route them through Raycast Unblock to unlock Pro features.
+
+1. Install mitmproxy and the mitmproxy CA certificate.
+2. Write Python code to intercept:
+
+```python
+# mitm.py
+from mitmproxy import http
+
+def request(flow: http.HTTPFlow) -> None:
+  if flow.request.headers.get('x-raycast-unblock') == 'true':
+    return
+  if 'backend.raycast.com' in flow.request.pretty_url:
+    print(f"request: {flow.request.pretty_url}")
+    new_url = flow.request.pretty_url.replace('https://backend.raycast.com', 'http://127.0.0.1:3000')
+    flow.request.url = new_url
+```
+
+3. Run mitmproxy: `mitmproxy -s mitm.py`.
+4. Open Raycast and use the features in the Pro Plan.
+
 ## Use it with Surge Scripts (Not recommend)
 
 > [!NOTE]
