@@ -5,6 +5,8 @@ import { Debug } from '../../utils/log.util'
 import { GROQ_API_USER_PROFILE, GROQ_REFRESH_TOKEN_API, GROQ_X_SDK_CLIENT } from './constants'
 import type { TokenResponse, UserProfile } from './types'
 
+const debug = Debug.create('Groq')
+
 interface GroqWebCache {
   jwt?: string
   expiresAt?: Date
@@ -25,7 +27,7 @@ async function refreshJWT() {
     throw new Error(`ai.groq.refresh_token not configured yet`)
   if (refreshToken.includes('Basic '))
     refreshToken.replace('Basic ', '')
-  Debug.info(`Fetching refreshedJwt`)
+  debug.info(`Fetching refreshedJwt`)
   const res = await groqClient<TokenResponse>(GROQ_REFRESH_TOKEN_API, {
     method: 'POST',
     body: {},
@@ -47,7 +49,7 @@ async function refreshJWT() {
     orgId: '',
   } as GroqWebCache
   setCache('groq', 'web', store)
-  Debug.info(`Fetch User Profile with new jwt and record orgId`)
+  debug.info(`Fetch User Profile with new jwt and record orgId`)
   const orgId = (await getUserProfile()).user.orgs.data[0].id
   store.orgId = orgId
   setCache('groq', 'web', store)
@@ -57,7 +59,7 @@ async function refreshJWT() {
 async function getGroqCacheAndAutoRefresh() {
   const cache = getCache<GroqWebCache>('groq', 'web')
   if (!cache?.expiresAt || new Date(cache?.expiresAt).getTime() < Date.now()) {
-    Debug.info(`Groq cache expired.`)
+    debug.info(`Groq cache expired.`)
     await refreshJWT()
     return await getGroqCacheAndAutoRefresh()
   }

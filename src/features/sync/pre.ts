@@ -15,12 +15,13 @@ export function getSyncFolder() {
 }
 
 export function prepareSync() {
-  Debug.info('[Sync] Checking sync folder availability...')
+  const debug = Debug.create('Sync')
+  debug.info('Checking sync folder availability...')
   const syncPath = getSyncFolder()
   if (!fs.existsSync(syncPath)) {
-    Debug.info('[Sync] Preparing sync folder...')
+    debug.info('Preparing sync folder...')
     fs.mkdirSync(syncPath)
-    Debug.success('[Sync] Sync folder created.')
+    debug.success('Sync folder created.')
   }
-  Debug.success(`[Sync] Sync folder is ready.`)
+  debug.success(`Sync folder is ready.`)
 }

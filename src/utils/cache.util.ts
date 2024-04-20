@@ -5,21 +5,23 @@ import { DATA } from '../constants'
 import { Debug } from './log.util'
 
 export function prepareCache() {
-  Debug.info('[Cache] Checking cache data folder...')
+  const debug = Debug.create('Cache')
+  debug.info('Checking cache data folder...')
   const data = resolve(DATA, 'cache')
   if (!fs.existsSync(data)) {
-    Debug.info('[Cache] Creating cache data folder...')
+    debug.info('Creating cache data folder...')
     fs.mkdirSync(data, { recursive: true })
   }
-  Debug.success('[Cache] Cache data folder is ready')
+  debug.success('Cache data folder is ready')
 }
 
 export function registCache(name: string) {
+  const debug = Debug.create('Cache')
   const dataPath = resolve(DATA, 'cache', `${name}.json`)
-  Debug.info('[Cache] Registering cache data file...', dataPath, fs.existsSync(dataPath))
+  debug.info('Registering cache data file...', dataPath, fs.existsSync(dataPath))
   if (!fs.existsSync(dataPath))
     fs.writeFileSync(dataPath, '')
-  Debug.success(`[Cache] ${name} is registered`)
+  debug.success(`${name} is registered`)
   return dataPath
 }
 

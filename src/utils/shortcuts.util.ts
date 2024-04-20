@@ -37,11 +37,12 @@ export async function runShortcut<T>(name: string, input?: T): Promise<string> {
 }
 
 export async function prepareShortcutRunner() {
-  Debug.info('[Shortcuts] Checking shortcuts tmp folder...')
+  const debug = Debug.create('Shortcuts')
+  debug.info('Checking shortcuts tmp folder...')
   const tmp = resolve(TMP, 'shortcuts')
   if (!fs.existsSync(tmp)) {
     fs.mkdirSync(tmp)
-    Debug.success('[Shortcuts] shortcuts tmp folder created.')
+    debug.success('shortcuts tmp folder created.')
   }
-  Debug.success('[Shortcuts] shortcuts tmp prepared.')
+  debug.success('shortcuts tmp prepared.')
 }

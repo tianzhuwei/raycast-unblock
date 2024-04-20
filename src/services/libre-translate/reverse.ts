@@ -7,6 +7,7 @@ const app = 'https://libretranslate.com/js/app.js'
 const regex = /apiSecret:\s*['"]([^'"]+)['"]/
 
 export async function getApiSecret() {
+  const debug = Debug.create('LibreTranslate')
   const res = await ofetch.native(app).then((res) => {
     if (!res.ok)
       throw new Error('Failed to fetch app.js')
@@ -16,7 +17,7 @@ export async function getApiSecret() {
   if (!match)
     throw new Error('Failed to find LibreTranslate API secret in app.js')
 
-  Debug.info('LibreTranslate API secret:', match[1])
+  debug.info('LibreTranslate API secret:', match[1])
   return match[1]
 }
 

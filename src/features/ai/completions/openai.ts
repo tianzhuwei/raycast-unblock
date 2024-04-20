@@ -12,6 +12,7 @@ import { AvailableFunctions } from '../functions/functions'
 import { Debug } from '../../../utils/log.util'
 
 export async function OpenAIChatCompletion(request: FastifyRequest, reply: FastifyReply) {
+  const debug = Debug.create('OpenAI')
   const aiConfig = getConfig('ai')
   const openaiConfig = getConfig('ai')?.openai
 
@@ -79,7 +80,7 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
         maxTokens: openaiConfig?.maxTokens || aiConfig?.maxTokens,
       },
     ).catch((err) => {
-      throw new Error(`[AI] Azure OpenAI Chat Completions Failed: ${err?.message}`)
+      throw new Error(`Azure OpenAI Chat Completions Failed: ${err?.message}`)
     })
   }
   else {
@@ -102,8 +103,8 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
       && !aiConfig?.functions?.disable
       && functionToolsConfig.length > 0
     ) {
-      Debug.info(`[AI] Function call tools: `, functionToolsConfig)
-      Debug.info(`[AI] Web Search Tool option is on.`)
+      debug.info(`Function call tools: `, functionToolsConfig)
+      debug.info(`Web Search Tool option is on.`)
       // 在这里先做一次进行 Function Call
       // append 进 openai_message 里，再去做一次 steam 流，在 steam 中就可以不再加入 & 处理 tool_call 了
       const toolCallChainStep = await openai.chat.completions.create({
@@ -113,13 +114,13 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
         tools: functionToolsConfig,
         tool_choice: 'auto',
       }).catch((err) => {
-        throw new Error(`[AI] OpenAI Chat Completions (toolCallChainStep) Failed: ${err}`)
+        throw new Error(`OpenAI Chat Completions (toolCallChainStep) Failed: ${err}`)
       })
       // 处理 Function Call [Start]
       const responseMessage = toolCallChainStep.choices[0].message
       const toolCalls = responseMessage.tool_calls || []
       if (responseMessage.tool_calls) {
-        Debug.info(`[AI] tool calls:`, toolCalls)
+        debug.info(`tool calls:`, toolCalls)
         // extend conversation with assistant's reply
         openai_message.push(responseMessage)
         // console.log('responseMessage', responseMessage)
@@ -134,7 +135,7 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
           const functionHandler = functionToCall.handler
           const functionResponse = JSON.stringify(await functionHandler(...functionArgsValues))
           handlerMessageRecorder.push(functionResponse)
-          Debug.info(`[AI] Function Call: ${functionName} successfully`)
+          debug.info(`Function Call: ${functionName} successfully`)
           openai_message.push({
             tool_call_id: toolCall.id,
             role: 'tool',
@@ -155,11 +156,11 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
       ...chatConfig,
       messages: openai_message as any,
     }).catch((err) => {
-      throw new Error(`[AI] OpenAI Chat Completions Failed: ${err}`)
+      throw new Error(`OpenAI Chat Completions Failed: ${err}`)
     })
 
     if (stream instanceof Error)
-      throw new Error(`[AI] OpenAI Chat Completions Failed: ${stream}`)
+      throw new Error(`OpenAI Chat Completions Failed: ${stream}`)
 
     return reply.sse((async function* source() {
       try {

@@ -35,6 +35,7 @@ function getBinaryName() {
 }
 
 async function downloadBinary() {
+  const debug = Debug.create('Certificate')
   try {
     const binaryName = getBinaryName()
     const cacheDirectory = getCacheDirectory('mkcert')
@@ -48,14 +49,14 @@ async function downloadBinary() {
 
     await fs.promises.mkdir(cacheDirectory, { recursive: true })
 
-    Debug.info(`[Certificate] Downloading mkcert package...`)
+    debug.info(`Downloading mkcert package...`)
 
     const response = await fetch(downloadUrl)
 
     if (!response.ok || !response.body)
       throw new Error(`[Certificate] request failed with status ${response.status}`)
 
-    Debug.info(`[Certificate] Download response was successful, writing to disk`)
+    debug.info(`Download response was successful, writing to disk`)
 
     const binaryWriteStream = fs.createWriteStream(binaryPath)
 

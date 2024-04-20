@@ -101,20 +101,22 @@ export function watchConfig() {
 export function getConfig<T extends keyof Config>(key?: T, inKey?: string): Config[T] {
   const env = process.env.config
   if (env) {
+    const debug = Debug.create('Config')
+
     const config = destr<Config>(env)
     if (key) {
-      // Debug.info(`[Config] Get config key [${key}]`)
+      // debug.info(`Get config key [${key}]`)
       if (key.includes('.')) {
-        Debug.info(`[Config] Get config key [${key}] with dot notation`)
+        debug.info(`Get config key [${key}] with dot notation`)
         return getValueFromDotNotation(config, key)
       }
       if (inKey) {
         if (inKey.includes('.')) {
-          Debug.info(`[Config] Get config key [${key}] with dot notation`)
+          debug.info(`Get config key [${key}] with dot notation`)
           return getValueFromDotNotation(config[key], inKey)
         }
         else {
-          Debug.info(`[Config] Get config key [${key}] with inKey [${inKey}]`)
+          debug.info(`Get config key [${key}] with inKey [${inKey}]`)
           const _c = config as any
           if (_c[inKey] && _c[inKey][key])
             return _c[inKey][key]

@@ -44,17 +44,42 @@ function removeSensitiveAPIKeyMessageHelper(obj: any) {
   return obj
 }
 
+export function createLogMethod(target: 'consola' | 'native', level: string, module = '') {
+  return (message: any, ...args: any) => DebugConsole(target, level, `${module ? `[${module}]` : ''}`, message, ...args)
+}
+
+interface DebugType {
+  info: (message: any, ...args: any) => void
+  success: (message: any, ...args: any) => void
+  warn: (message: any, ...args: any) => void
+  error: (message: any, ...args: any) => void
+  log: (message: any, ...args: any) => void
+}
+
 export const Debug = {
-  info: (message: any, ...args: any[]) => DebugConsole('consola', 'info', message, ...args),
-  success: (message: any, ...args: any[]) => DebugConsole('consola', 'success', message, ...args),
-  warn: (message: any, ...args: any[]) => DebugConsole('consola', 'warn', message, ...args),
-  error: (message: any, ...args: any[]) => DebugConsole('consola', 'error', message, ...args),
-  log: (message: any, ...args: any[]) => DebugConsole('consola', 'log', message, ...args),
+  info: createLogMethod('consola', 'info'),
+  success: createLogMethod('consola', 'success'),
+  warn: createLogMethod('consola', 'warn'),
+  error: createLogMethod('consola', 'error'),
+  log: createLogMethod('consola', 'log'),
+
   native: {
-    info: (message: any, ...args: any[]) => DebugConsole('native', 'info', message, ...args),
-    success: (message: any, ...args: any[]) => DebugConsole('native', 'success', message, ...args),
-    warn: (message: any, ...args: any[]) => DebugConsole('native', 'warn', message, ...args),
-    error: (message: any, ...args: any[]) => DebugConsole('native', 'error', message, ...args),
-    log: (message: any, ...args: any[]) => DebugConsole('native', 'log', message, ...args),
+    ...['info', 'success', 'warn', 'error', 'log'].reduce((methods: Record<string, any>, level: string) => {
+      methods[level] = createLogMethod('native', level)
+      return methods
+    }, {}),
   },
+
+  create: (module?: string) => ({
+    ...['info', 'success', 'warn', 'error', 'log'].reduce((methods: Record<string, any>, level) => {
+      methods[level] = createLogMethod('consola', level, module)
+      return methods
+    }, {}) as DebugType,
+    native: {
+      ...['info', 'success', 'warn', 'error', 'log'].reduce((methods: Record<string, any>, level) => {
+        methods[level] = createLogMethod('native', level, module)
+        return methods
+      }, {}) as DebugType,
+    },
+  }),
 }

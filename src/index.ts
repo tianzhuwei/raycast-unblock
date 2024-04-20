@@ -15,24 +15,26 @@ watchConfig()
 process.title = packageJson.name
 
 function prepareTmp() {
-  Debug.info('[Tmp] Checking tmp folder...')
+  const debug = Debug.create('Tmp')
+  debug.info('Checking tmp folder...')
   const tmp = TMP
   if (!fs.existsSync(tmp)) {
-    Debug.info('[Tmp] Preparing tmp folder...')
+    debug.info('Preparing tmp folder...')
     fs.mkdirSync(tmp)
-    Debug.success('[Tmp] tmp folder created.')
+    debug.success('tmp folder created.')
   }
-  Debug.success('[Tmp] tmp prepared.')
+  debug.success('tmp prepared.')
 }
 
 function prepareData() {
-  Debug.info('[Data] Checking Data folder...')
+  const debug = Debug.create('Data')
+  debug.info('Checking Data folder...')
   if (!fs.existsSync(DATA)) {
-    Debug.info('[Data] Preparing Data folder...')
+    debug.info('Preparing Data folder...')
     fs.mkdirSync(DATA)
-    Debug.success('[Data] Data folder created.')
+    debug.success('Data folder created.')
   }
-  Debug.success('[Data] Data prepared.')
+  debug.success('Data prepared.')
 }
 
 launch()
