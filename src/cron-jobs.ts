@@ -1,5 +1,6 @@
 import type { FalsyValue, Params } from 'fastify-cron'
 import { checkGroqModels } from './crons/check-groq-models'
+import { checkLatestVersion } from './crons/check-latest-version'
 
 export const cronJobs: (Params | FalsyValue)[] = [
   {
@@ -7,6 +8,7 @@ export const cronJobs: (Params | FalsyValue)[] = [
     onTick: async () => {
       Promise.all([
         checkGroqModels(),
+        checkLatestVersion(),
       ])
     },
   },
