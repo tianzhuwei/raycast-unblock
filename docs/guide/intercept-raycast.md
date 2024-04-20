@@ -73,7 +73,7 @@ Or you can deploy the backend to a remote server, and this will not be a problem
 
 Raycast Unblock adds an `x-raycast-unblock` header to requests to Raycast Backend.
 
-You can determine whether this is a request from Raycast or Raycast Unblock by the presence of this header, and make the backend service work properly through conditional judgment. (Raycast Unblock has turned off SSL check by default)
+You can determine whether this is a request from Raycast or Raycast Unblock by the presence of this header, and make the backend service work properly through conditional judgment.
 
 [Related Code in activation-script](https://github.com/wibus-wee/activation-script/blob/main/src/modules/index.ts#L70-L89)
 
