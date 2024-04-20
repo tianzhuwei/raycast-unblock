@@ -1,12 +1,8 @@
-import process from 'node:process'
 import consola from 'consola'
 import type { $Fetch } from 'ofetch'
 import { ofetch } from 'ofetch'
 import { GROQ_API_ENDPOINT } from '../services/groq-web/constants'
 import { Debug } from './log.util'
-
-// Disable SSL verification. (Local Server)
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 export const httpClient: $Fetch = ofetch.create({
   baseURL: 'https://backend.raycast.com/api/v1',
