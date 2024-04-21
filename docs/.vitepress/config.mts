@@ -24,7 +24,6 @@ export default defineConfig({
       trackOutgoingLinks: true,
       trackAttributes: true,
     });
-    console.log('openpanel is ok!')
     `],
   ],
   themeConfig: {
@@ -58,6 +57,7 @@ export default defineConfig({
           { text: 'Azure OpenAI', link: '/features/azure-openai' },
           { text: 'Function Call', link: '/features/function-call' },
           { text: 'Groq Web', link: '/features/groq-web' },
+          { text: 'Cohere Web', link: '/features/cohere-web' },
         ],
       },
       {

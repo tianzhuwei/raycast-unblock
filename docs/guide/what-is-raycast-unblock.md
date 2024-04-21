@@ -24,25 +24,9 @@ You can see all the code in the `src` directory. If you have any questions, plea
 
 - Pro Plan Logo
 - AI Chat
-  - Function Call <sup>`Only OpenAI`</sup> <sup>_**`🌊 Alpha`**_</sup>
-    - Serp
-    - Web Search
-  - Services
-    - OpenAI (Support Azure OpenAI)
-    - Gemini
-    - Groq Web
 - Translations
-  - Shortcut
-  - AI
-  - DeepLX
-  - LibreTranslate
-  - Google Translate
-  - More?
 - Cloud Sync
-  - iCloud Drive
-  - Local Storage
 - Others
-  - Theme Studio
 
 <sup>If you have any feature requests, please feel free to ask.</sup>
 

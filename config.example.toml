@@ -98,6 +98,10 @@ api_key = ""
 # temperature = 0.5
 # max_tokens = 100
 
+[AI.Cohere]
+email = ""
+password = ""
+
 [Translate]
 # You can choose the default translation service from the following:
 # shortcut, deeplx, ai, libretranslate, google

@@ -56,6 +56,7 @@ Promise.all([
 
 Promise.all([
   registCache('groq'),
+  registCache('cohere'),
 ]).then(() => {
   Debug.success('Cache Registration is done.')
 })

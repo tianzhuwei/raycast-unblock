@@ -4,6 +4,7 @@ import { getConfig } from '../../utils/env.util'
 import { OpenaiGenerateContent } from '../ai/generate/openai'
 import type { TranslateFrom, TranslateTo } from '../../types/raycast/translate'
 import { GroqWebGenerateContent } from '../ai/generate/groq-web'
+import { CohereWebGenerateContent } from '../ai/generate/cohere-web'
 import { generateTranslationsPrompts } from './prompts'
 
 function getDefaultTranslateAI() {
@@ -29,6 +30,10 @@ export async function TranslateWithAI(request: FastifyRequest): Promise<Translat
     case 'groq': {
       const model = getConfig('translate')?.ai?.model
       content = await GroqWebGenerateContent(prompts, model)
+      break
+    }
+    case 'cohere': {
+      content = await CohereWebGenerateContent(prompts)
       break
     }
     case 'openai':

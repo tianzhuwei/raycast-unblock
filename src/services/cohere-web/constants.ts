@@ -1,0 +1,6 @@
+export const COHERE_API_ENDPOINT = 'https://production.api.os.cohere.ai'
+export const COHERE_API_GET_OR_CREATE_DEFAULT_API_KEY = '/rpc/BlobheartAPI/GetOrCreateDefaultAPIKey'
+export const COHERE_API_CHAT = '/coral/v1/chat'
+export const COHERE_API_AuthV2 = '/rpc/BlobheartAPI/AuthV2'
+export const COHERE_API_Session = '/rpc/BlobheartAPI/Session'
+export const COHERE_API_Refresh = '/rpc/BlobheartAPI/Refresh'

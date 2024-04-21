@@ -7,7 +7,7 @@ import { getConfig } from '../../../utils/env.util'
 export async function GroqWebGenerateContent(prompt: {
   role: string
   content: string
-}[], msg?: string): Promise<AIGenerateContent> {
+}[], model?: string): Promise<AIGenerateContent> {
   const aiConfig = getConfig('ai')
   const config = getConfig('ai')?.groq
 
@@ -18,18 +18,12 @@ export async function GroqWebGenerateContent(prompt: {
       content: m.content,
     })
   }
-  if (msg) {
-    messages.push({
-      role: 'system',
-      content: msg,
-    })
-  }
 
   const headers = await generateGroqWebRequestHeader()
   const temperature = config?.temperature || aiConfig?.temperature || 0.5
   const requestBody = {
     messages,
-    model: config?.default || 'llama2-70b-4096',
+    model: model || config?.default || 'llama3-70b-8192',
     temperature,
     top_p: 1,
     n: 1,

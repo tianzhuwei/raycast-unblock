@@ -16,7 +16,10 @@ export async function PreUniversalAICompletions(request: FastifyRequest, config?
   const aiConfig = getConfig('ai')
   let temperature = config?.temperature || aiConfig?.temperature || 0.5
   const requestBody = {
-    messages: [] as any[],
+    messages: [] as {
+      role: string
+      content: string
+    }[],
     model: body.model,
     temperature,
     top_p: 1,

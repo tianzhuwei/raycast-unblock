@@ -5,6 +5,7 @@ import { GeminiChatCompletion } from '../../features/ai/completions/gemini'
 import { OpenAIChatCompletion } from '../../features/ai/completions/openai'
 import type { RaycastCompletions } from '../../types/raycast/completions'
 import { GroqWebCompletions } from '../../features/ai/completions/groq-web'
+import { CohereWebCompletions } from '../../features/ai/completions/cohere-web'
 
 export async function Completions(request: FastifyRequest, reply: FastifyReply) {
   const body = request.body as RaycastCompletions
@@ -26,6 +27,9 @@ export async function Completions(request: FastifyRequest, reply: FastifyReply) 
       break
     case 'groq':
       completionsHandler = GroqWebCompletions
+      break
+    case 'cohere':
+      completionsHandler = CohereWebCompletions
       break
     default:
       break

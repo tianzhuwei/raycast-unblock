@@ -138,6 +138,30 @@ export const GEMINI_SERVICE_PROVIDERS: RaycastAIModels = [
   },
 ]
 
+export const COHERE_SERVICE_PROVIDERS: RaycastAIModels = [
+  {
+    id: 'command-r-plus',
+    model: 'command-r-plus',
+    name: 'Command R Plus',
+    description: `Command+R Plus is a powerful AI model that can generate code completions, write code, and answer questions about code. It is designed to help developers write code faster and more efficiently.`,
+    provider: 'cohere',
+    provider_name: 'Cohere',
+    provider_brand: 'openai',
+    requires_better_ai: false,
+    speed: 3,
+    intelligence: 3,
+    context: 16,
+    suggestions: ['chat', 'quick_ai', 'commands'],
+    features: ['chat', 'quick_ai', 'commands', 'api', 'emoji_search'],
+    capabilities: {
+      // image_generation: 'null',
+      // web_search: 'null'
+    },
+    in_better_ai_subscription: false,
+    status: 'beta',
+  },
+]
+
 export const RAYCAST_DEFAULT_MODELS = {
   chat: 'openai-gpt-3.5-turbo',
   quick_ai: 'openai-gpt-3.5-turbo',

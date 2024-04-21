@@ -1,6 +1,6 @@
 import type { RaycastAIModel } from '../../types/raycast/models'
 import { getConfig } from '../../utils/env.util'
-import { GEMINI_SERVICE_PROVIDERS, GROQ_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_GROQ_MODELS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
+import { COHERE_SERVICE_PROVIDERS, GEMINI_SERVICE_PROVIDERS, GROQ_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_GROQ_MODELS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
 
 function generateRaycastAIServiceProviders() {
   const config = getConfig('ai')
@@ -41,6 +41,8 @@ function generateRaycastAIServiceProviders() {
     default_models.push(...GEMINI_SERVICE_PROVIDERS)
   if (config?.groq && !config?.groq.disable)
     default_models.push(...GROQ_SERVICE_PROVIDERS)
+  if (config?.cohere && !config?.cohere.disable)
+    default_models.push(...COHERE_SERVICE_PROVIDERS)
   return default_models.flat()
 }
 

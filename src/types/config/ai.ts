@@ -5,9 +5,11 @@ export interface AIConfig {
   temperature?: number
   maxTokens?: number
   functions?: AIServiceFunctionsConfig
+
   openai?: OpenAIServiceConfig
   gemini?: GeminiServiceConfig
   groq?: GroqServiceConfig
+  cohere?: CohereWebServiceConfig
 }
 export interface AIServiceFunctionsConfig {
   disable?: boolean
@@ -37,6 +39,11 @@ export interface GeminiServiceConfig extends AIServiceConfig {}
 export interface GroqServiceConfig extends Omit<AIServiceConfig, 'apiKey'> {
   refreshToken?: string
   default: string
+}
+
+export interface CohereWebServiceConfig extends Omit<AIServiceConfig, 'apiKey'> {
+  email?: string
+  password?: string
 }
 
 interface AIModelConfig extends Omit<RaycastAIModel, 'capabilities'> {
