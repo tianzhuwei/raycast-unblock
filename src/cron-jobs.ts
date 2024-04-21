@@ -22,7 +22,7 @@ export const cronJobs: (Params | FalsyValue)[] = [
     runOnInit: true,
   },
   {
-    cronTime: '0 * * * * *',
+    cronTime: '0 * * * * *', // 每分钟
     onTick: async () => {
       await cohereWebGetOrCreateDefaultAPIKey()
     },

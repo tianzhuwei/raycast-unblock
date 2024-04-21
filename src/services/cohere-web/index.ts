@@ -29,7 +29,11 @@ async function checkCacheTokenIsExpired() {
   return true
 }
 
-export async function cohereWebLogin(force = false): Promise<CohereWebAuthV2Response> {
+export async function cohereWebLogin(force = false): Promise<CohereWebAuthV2Response | undefined> {
+  const config = getConfig('ai')?.cohere
+  if (!config)
+    return
+
   const debug = Debug.create('cohere-web')
   debug.info('Logging in to cohere...')
 
@@ -40,7 +44,6 @@ export async function cohereWebLogin(force = false): Promise<CohereWebAuthV2Resp
     return tokens
   }
 
-  const config = getConfig('ai')?.cohere
   if (!config?.email || !config?.password)
     throw new Error('Cohere email and password are required for login')
 
@@ -66,7 +69,10 @@ export async function cohereWebLogin(force = false): Promise<CohereWebAuthV2Resp
   return res
 }
 
-export async function cohereWebGetOrCreateDefaultAPIKey(): Promise<CohereWebGetOrCreateDefaultAPIKeyResponse> {
+export async function cohereWebGetOrCreateDefaultAPIKey(): Promise<CohereWebGetOrCreateDefaultAPIKeyResponse | undefined> {
+  const config = getConfig('ai')?.cohere
+  if (!config)
+    return
   const debug = Debug.create('cohere-web')
 
   // Get or create default API key
@@ -86,8 +92,8 @@ export async function cohereWebGetOrCreateDefaultAPIKey(): Promise<CohereWebGetO
     throw err
   })
 
-  if (res.rawKey)
-    setCache('cohere', 'defaultAPIKey', res.rawKey)
+  if (res!.rawKey)
+    setCache('cohere', 'defaultAPIKey', res!.rawKey)
 
   return res
 }
