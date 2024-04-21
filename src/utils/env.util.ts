@@ -6,7 +6,7 @@ import { parse } from 'toml'
 import destr from 'destr'
 import type { Config } from '../types/config'
 import { Debug } from './log.util'
-import { getValueFromDotNotation, matchKeyInObject, toCamelCaseInObject, tolowerCaseInObject, transformToString } from './others.util'
+import { getValueFromDotNotation, matchKeyInObject, toCamelCaseInObject, tolowerCaseInObject } from './others.util'
 
 /**
  * Check the default OpenAI model configuration.
@@ -72,13 +72,6 @@ export function injectEnv() {
     env = checkDefault(env)
     process.env.config = JSON.stringify(env)
     Debug.native.log(env)
-    if (env.legacy) {
-      for (const key in env.legacy) {
-        consola.warn(`[DEPRECATED] You are using deprecated config key [${key.toUpperCase()}]. It can't be used in this version anymore. Please use the new config format.`)
-        process.env[key.toUpperCase()] = transformToString((env.legacy as any)[key])
-      }
-      consola.warn('Please use the new config format. Check the documentation for more information: https://github.com/wibus-wee/raycast-unblock#readme')
-    }
   }
   else if (matchKeyInObject(argv, 'config')) { // Only exit if the flag [--config] is used
     consola.error(`The configuration file [${config}] doesn't exist.`)

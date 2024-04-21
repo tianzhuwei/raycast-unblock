@@ -24,8 +24,6 @@ export async function Completions(request: FastifyRequest, reply: FastifyReply) 
     case 'openai':
       completionsHandler = OpenAIChatCompletion
       break
-    // case 'copilot':
-    //   return CopilotChatCompletion(request, reply)
     case 'groq':
       completionsHandler = GroqWebCompletions
       break

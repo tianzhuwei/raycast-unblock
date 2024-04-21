@@ -51,7 +51,7 @@ You can see all the code in the `src` directory. If you have any questions, plea
 - [Raycast](https://raycast.com)
 - [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
 - [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
-- [aaamoon/copilot-gpt4-service](https://github.com/aaamoon/copilot-gpt4-service)
+- ~~[aaamoon/copilot-gpt4-service](https://github.com/aaamoon/copilot-gpt4-service)~~
 - [google/generative-ai-js](https://github.com/google/generative-ai-js)
 - [OwO-Network/DeepLX](https://github.com/OwO-Network/DeepLX)
 - [iamtraction/google-translate](https://github.com/iamtraction/google-translate)

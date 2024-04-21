@@ -26,17 +26,6 @@ export const groqClient: $Fetch = ofetch.create({
   },
 })
 
-export const copilotClient: $Fetch = ofetch.create({
-  baseURL: 'https://api.githubcopilot.com',
-  onRequest: (ctx) => {
-    Debug.info(`[GitHub Copilot] Request: ${ctx.request}`)
-  },
-  onRequestError: (ctx) => {
-    consola.error(`[GitHub Copilot] Request error`)
-    console.error(ctx)
-  },
-})
-
 export async function getBackendResponse(
   url: string,
   headers = {},

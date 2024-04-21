@@ -7,7 +7,6 @@ export interface AIConfig {
   functions?: AIServiceFunctionsConfig
   openai?: OpenAIServiceConfig
   gemini?: GeminiServiceConfig
-  // copilot?: CopilotServiceConfig
   groq?: GroqServiceConfig
 }
 export interface AIServiceFunctionsConfig {
@@ -34,10 +33,6 @@ export interface OpenAIServiceConfig extends AIServiceConfig {
   azureDeploymentName?: string
 }
 export interface GeminiServiceConfig extends AIServiceConfig {}
-
-// export interface CopilotServiceConfig extends AIServiceConfig {
-//   default: 'gpt-3.5-turbo' | 'gpt-4'
-// }
 
 export interface GroqServiceConfig extends Omit<AIServiceConfig, 'apiKey'> {
   refreshToken?: string

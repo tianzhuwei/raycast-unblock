@@ -26,9 +26,6 @@ export async function TranslateWithAI(request: FastifyRequest): Promise<Translat
     case 'gemini':
       content = await GeminiGenerateContent(prompts)
       break
-    // case 'copilot':
-    //   content = await CopilotGenerateContent(prompts)
-    //   break
     case 'groq': {
       const model = getConfig('translate')?.ai?.model
       content = await GroqWebGenerateContent(prompts, model)

@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:21-alpine as builder
+FROM --platform=$BUILDPLATFORM node:21-alpine AS builder
 
 RUN apk add make g++ alpine-sdk python3 py3-pip
 RUN npm i -g pnpm@8.15.1
@@ -15,7 +15,7 @@ RUN pnpm build:rollup
 RUN pnpm bundle
 
 
-FROM --platform=$BUILDPLATFORM alpine:3.19 as runner
+FROM --platform=$BUILDPLATFORM alpine:3.19 AS runner
 
 RUN apk add --no-cache libstdc++
 
