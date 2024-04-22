@@ -54,25 +54,28 @@ export default defineConfig({
       {
         text: 'Feature - AI',
         items: [
-          { text: 'Azure OpenAI', link: '/features/azure-openai' },
-          { text: 'Function Call', link: '/features/function-call' },
-          { text: 'Groq Web', link: '/features/groq-web' },
-          { text: 'Cohere', link: '/features/cohere' },
-          { text: 'Cohere Web', link: '/features/cohere-web' },
+          { text: 'Azure OpenAI', link: '/features/ai/azure-openai' },
+          { text: 'Function Call', link: '/features/ai/function-call' },
+          { text: 'Groq Web', link: '/features/ai/groq-web' },
+          { text: 'Cohere', link: '/features/ai/cohere' },
+          { text: 'Cohere Web', link: '/features/ai/cohere-web' },
         ],
       },
       {
         text: 'Feature - Translator',
         items: [
-          { text: 'AI Translator', link: '/features/ai-translator' },
-          { text: 'LibreTranslate', link: '/features/libre-translate' },
-          { text: 'Shortcut Translator', link: '/features/shortcut-translator' },
+          { text: 'Google Translate', link: '/features/translator/google-translate' },
+          { text: 'DeepL Translate', link: '/features/translator/deeplx' },
+          { text: 'Shortcut Translator', link: '/features/translator/shortcut-translator' },
+          { text: 'LibreTranslate', link: '/features/translator/libre-translate' },
+          { text: 'AI Translator', link: '/features/translator/ai-translator' },
         ],
       },
       {
         text: 'Feature - Cloud Sync',
         items: [
-          { text: 'iCloud Drive', link: '/features/icloud-drive' },
+          { text: 'iCloud Drive', link: '/features/sync/icloud-drive' },
+          { text: 'Local Sync', link: '/features/sync/local-sync' },
         ],
       },
     ],

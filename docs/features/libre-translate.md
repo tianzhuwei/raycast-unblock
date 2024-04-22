@@ -1,5 +1,0 @@
-# LibreTranslate
-
-```
-🧪 Working in Progress
-```

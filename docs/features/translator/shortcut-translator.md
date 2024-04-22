@@ -1,4 +1,4 @@
-# Shortcut Translator
+# Shortcut Translator <Badge type="tip" text="^0.1.0-beta.0" />
 
 Raycast Unblock provides a shortcut translator. You can use it to translate text in Raycast Translate feature.
 
