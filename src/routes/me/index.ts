@@ -22,6 +22,8 @@ export async function Me(request: FastifyRequest) {
         eligible_for_ai_citations: true,
         eligible_for_developer_hub: true,
         eligible_for_application_settings: true,
+        eligible_for_ai_beta_features: true,
+        eligible_for_cloud_sync: true,
         publishing_bot: true,
         can_upgrade_to_pro: false,
         admin: true,
@@ -42,12 +44,20 @@ export function MeRoute(fastify: FastifyInstance, opts: Record<any, any>, done: 
     const user = store.find(u => u.email === backendResponse.email) || null
     if (user?.token !== request.headers.authorization) {
       Debug.success(`<${backendResponse.email}> is logged in.`)
+      const store = {
+        id: backendResponse.id,
+        avatar: {
+          url: backendResponse.avatar,
+          placeholder: backendResponse.avatar_placeholder_color,
+        },
+        name: backendResponse.name,
+        username: backendResponse.username,
+        email: backendResponse.email,
+        token: request.headers.authorization,
+      } as User
       setStore('users', [
         ...getStore<User[]>('users'),
-        {
-          email: backendResponse.email,
-          token: request.headers.authorization,
-        },
+        store,
       ])
     }
 
