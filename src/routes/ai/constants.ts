@@ -146,7 +146,7 @@ export const COHERE_SERVICE_PROVIDERS: RaycastAIModels = [
     description: `Command Light Nightly is an instruction-following conversational model that performs language tasks at a higher quality, more reliably, and with a longer context than previous models. It is best suited for complex workflows like code generation, retrieval augmented generation (RAG), tool use, and agents.`,
     provider: 'cohere',
     provider_name: 'Cohere',
-    provider_brand: 'ai',
+    provider_brand: 'openai',
     requires_better_ai: false,
     speed: 3,
     intelligence: 3,
@@ -167,7 +167,7 @@ export const COHERE_SERVICE_PROVIDERS: RaycastAIModels = [
     description: `Command Light is an instruction-following conversational model that performs language tasks at a higher quality, more reliably, and with a longer context than previous models. It is best suited for complex workflows like code generation, retrieval augmented generation (RAG), tool use, and agents.`,
     provider: 'cohere',
     provider_name: 'Cohere',
-    provider_brand: 'ai',
+    provider_brand: 'openai',
     requires_better_ai: false,
     speed: 3,
     intelligence: 3,
@@ -278,7 +278,7 @@ export const RAYCAST_GEMINI_PRO_ONLY_MODELS = {
   chat: 'gemini-pro',
   quick_ai: 'gemini-pro',
   commands: 'gemini-pro',
-  api: 'gemini-pros',
+  api: 'gemini-pro',
 }
 
 export const RAYCAST_DEFAULT_GROQ_MODELS = {
