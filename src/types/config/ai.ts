@@ -41,7 +41,8 @@ export interface GroqServiceConfig extends Omit<AIServiceConfig, 'apiKey'> {
   default: string
 }
 
-export interface CohereWebServiceConfig extends Omit<AIServiceConfig, 'apiKey'> {
+export interface CohereWebServiceConfig extends AIServiceConfig {
+  type?: 'api' | 'web'
   email?: string
   password?: string
 }

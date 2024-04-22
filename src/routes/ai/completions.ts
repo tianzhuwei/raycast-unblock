@@ -6,6 +6,8 @@ import { OpenAIChatCompletion } from '../../features/ai/completions/openai'
 import type { RaycastCompletions } from '../../types/raycast/completions'
 import { GroqWebCompletions } from '../../features/ai/completions/groq-web'
 import { CohereWebCompletions } from '../../features/ai/completions/cohere-web'
+import type { CohereWebServiceConfig } from '../../types/config/ai'
+import { CohereAPICompletions } from '../../features/ai/completions/cohere-api'
 
 export async function Completions(request: FastifyRequest, reply: FastifyReply) {
   const body = request.body as RaycastCompletions
@@ -28,9 +30,14 @@ export async function Completions(request: FastifyRequest, reply: FastifyReply) 
     case 'groq':
       completionsHandler = GroqWebCompletions
       break
-    case 'cohere':
-      completionsHandler = CohereWebCompletions
+    case 'cohere': {
+      const cohereConfig = config![provider] as CohereWebServiceConfig
+      if (cohereConfig.type === 'api')
+        completionsHandler = CohereAPICompletions
+      else
+        completionsHandler = CohereWebCompletions
       break
+    }
     default:
       break
   }

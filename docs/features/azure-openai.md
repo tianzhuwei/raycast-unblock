@@ -1,6 +1,10 @@
 # Azure OpenAI
 
+::: tip
 This function is completed by `@ImSingee`. Thank you.
+:::
+
+## Usage
 
 Assume you have such a azure endpoint link like following:
 

@@ -4,22 +4,29 @@ Raycast Unblock offers Cohere Web AI support. You can use Cohere's models for fr
 
 ::: warning
 This is an inverted API. Please use with caution.
+
+In general, we recommend that you use [Cohere's official API](./cohere) instead of Cohere Web.
 :::
 
 ::: tip
 Due to the special nature of Cohere Web's transmission, this feature may face *many unstable situations*. Please use with caution.
+
+We are not sure if the model configuration is effective in this scenario.
 :::
 
 ## Usage
 
-Make sure you have an account on [Cohere](https://coral.cohere.com). You can sign up for free.
+1. Make sure you have an account on [Cohere](https://coral.cohere.com). You can sign up for free.
 
-Modify the configuration file with your Cohere account credentials (email and password).
+2. Modify the configuration file with your Cohere account credentials (email and password).
+
+3. Set the `[AI.Cohere].type` to `web`.
 
 ## Configuration
 
 The configuration for this feature includes the following parameters:
 
+- `type`: The type of Cohere API to use. **Set this to `web`.**
 - `email`: Your email address for Cohere.
 - `password`: Your password for Cohere.
 
@@ -27,6 +34,7 @@ The configuration for this feature includes the following parameters:
 
 ```toml
 [AI.Cohere]
+type = 'web'
 email = '<your email>'
 password = '<your password>'
 ```
