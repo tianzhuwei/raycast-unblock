@@ -18,3 +18,9 @@ If you are sure that it is a problem with the dictionary settings, you can submi
 1. Open [iCloud Shortcut - RaycastUnblock.Translate.v1](https://www.icloud.com/shortcuts/4a907702fe3145d9a378a9c8af47bb2e) and add it to your shortcuts.
 2. Modify your `config.toml` file and set `Translate.type` to `shortcut`.
 3. Run Raycast Unblock and use Raycast Translate feature.
+
+## Configuration
+
+```toml
+# No configuration options for now
+```

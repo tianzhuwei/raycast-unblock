@@ -29,6 +29,8 @@ The configuration for this feature includes the following parameters:
 - `type`: The type of Cohere API to use. **Set this to `web`.**
 - `email`: Your email address for Cohere.
 - `password`: Your password for Cohere.
+- `temperature`: The temperature of the model. <Badge type="info" text="Optional" />
+- `max_tokens`: The maximum tokens of the model. <Badge type="info" text="Optional" />
 
 ### Example
 
@@ -37,4 +39,6 @@ The configuration for this feature includes the following parameters:
 type = 'web'
 email = '<your email>'
 password = '<your password>'
+# temperature = 0.5
+# max_tokens = 100
 ```

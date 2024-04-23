@@ -31,7 +31,12 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/what-is-raycast-unblock' },
-      // { text: 'Features', link: '/features/' },
+      { text: 'Features', items: [
+        { text: 'AI', link: '/features/ai/' },
+        { text: 'Translator', link: '/features/translator/google-translate' },
+        { text: 'Cloud Sync', link: '/features/sync/icloud-drive' },
+      ] },
+      { text: 'Config', link: '/features/' },
       { text: 'About', items: [
         {
           text: 'Q&A',
@@ -52,10 +57,19 @@ export default defineConfig({
         ],
       },
       {
+        text: 'General',
+        items: [
+          { text: 'General Config', link: '/features/' },
+        ],
+      },
+      {
         text: 'Feature - AI',
         items: [
+          { text: 'General', link: '/features/ai/' },
+          { text: 'OpenAI', link: '/features/ai/openai' },
           { text: 'Azure OpenAI', link: '/features/ai/azure-openai' },
           { text: 'Function Call', link: '/features/ai/function-call' },
+          { text: 'Gemini', link: '/features/ai/gemini' },
           { text: 'Groq Web', link: '/features/ai/groq-web' },
           { text: 'Cohere', link: '/features/ai/cohere' },
           { text: 'Cohere Web', link: '/features/ai/cohere-web' },

@@ -17,3 +17,12 @@ Modify `[AI.OpenAI]` field in `config.toml` according to the following steps.
 3. set `azure_deployment_name = yourDeployment`
 
 `azure_deployment_name` is optional and when it isn't provided, using `req.body.model` as a substitute. It is useful when you want to use multiple models.
+
+### Example
+
+```toml
+[AI.OpenAI]
+is_azure = true
+base_url = "https://yourAzure.openai.azure.com"
+azure_deployment_name = "yourDeployment"
+```

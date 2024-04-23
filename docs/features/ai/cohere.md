@@ -23,6 +23,8 @@ The configuration for this feature includes the following parameters:
 
 - `type`: The type of Cohere API to use. **Set this to `api`.**
 - `api_key`: Your Cohere API key.
+- `temperature`: The temperature of the model. <Badge type="info" text="Optional" />
+- `max_tokens`: The maximum tokens of the model. <Badge type="info" text="Optional" />
 
 ### Example
 
@@ -30,4 +32,6 @@ The configuration for this feature includes the following parameters:
 [AI.Cohere]
 type = 'api'
 api_key = '<your api key>'
+# temperature = 0.5
+# max_tokens = 100
 ```

@@ -12,9 +12,9 @@ You can configure the default translation AI provider and model in the `[Transla
 
 ## Configuration
 
-- `default`: If the default model is not set, or if the default model is set, but the specific AI service's model is not set, the default model written in the code will be used
+- `default`: If the default model is not set, or if the default model is set, but the specific AI service's model is not set, the default model written in the code will be used  <Badge type="info" text="Optional" />
   - Default: openai
-- `model`: The model used by the AI service (only effective for openai, groq)
+- `model`: The model used by the AI service (only effective for openai, groq)  <Badge type="info" text="Optional" />
   - Default: gpt-3.5-turbo
 
 ### Example
