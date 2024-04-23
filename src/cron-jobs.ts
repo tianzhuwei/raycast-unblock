@@ -3,6 +3,7 @@ import { checkGroqModels } from './crons/check-groq-models'
 import { checkLatestVersion } from './crons/check-latest-version'
 import { cohereWebGetOrCreateDefaultAPIKey, cohereWebLogin } from './services/cohere-web'
 import { getConfig } from './utils/env.util'
+import { checkCohereModels } from './crons/check-cohere-models'
 
 export const cronJobs: (Params | FalsyValue)[] = [
   {
@@ -10,8 +11,11 @@ export const cronJobs: (Params | FalsyValue)[] = [
     onTick: async () => {
       Promise.all([
         checkGroqModels(),
+        checkCohereModels(),
         checkLatestVersion(),
-      ])
+      ]).catch((err) => {
+        console.error(err)
+      })
     },
   },
   {

@@ -4,9 +4,13 @@ import { generateGroqWebRequestHeader } from '../services/groq-web'
 import { GROQ_API_MODELS } from '../services/groq-web/constants'
 import { groqClient } from '../utils'
 import { Debug } from '../utils/log.util'
+import { getConfig } from '../utils/env.util'
 
 export async function checkGroqModels() {
-  const debug = Debug.create('Groq Cron')
+  const config = getConfig('ai')?.groq?.refreshToken
+  if (!config)
+    return
+  const debug = Debug.create('crons:checkGroqModels')
   debug.info('Checking GROQ models...')
   const headers = await generateGroqWebRequestHeader()
   const result = await groqClient(GROQ_API_MODELS, {
