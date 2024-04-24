@@ -11,7 +11,9 @@ on:
       - .github/workflows/release.yml
       - .github/workflows/docker.yml
       - .github/workflows/ci.yml
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
 
 permissions:
   write-all
@@ -67,13 +69,13 @@ jobs:
 
       - name: Build project
         run: |
-          cd docs
           pnpm i
-          pnpm run docs:build
+          pnpm run build:docs
       - name: Deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          publish_dir: packages/docs/.vitepress/dist
     env:
       CI: true

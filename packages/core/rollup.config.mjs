@@ -20,7 +20,6 @@ export default defineConfig({
     }),
     commonjs(),
     json(),
-    // minify(),
     terser(),
   ],
 

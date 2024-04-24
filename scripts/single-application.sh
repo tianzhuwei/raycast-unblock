@@ -1,5 +1,5 @@
 OS=''
-TMP_NODE=./dist/node-tmp
+TMP_NODE=./packages/core/dist/node-tmp
 
 if [ "$(uname)" == "Darwin" ]; then
     OS='mac'
@@ -10,7 +10,7 @@ fi
 echo "OS: $OS"
 echo "TMP_NODE: $TMP_NODE"
 
-node --experimental-sea-config sea-config.json
+node --experimental-sea-config ./packages/core/sea-config.json
 cp $(command -v node) $TMP_NODE
 chmod 777 $TMP_NODE
 
