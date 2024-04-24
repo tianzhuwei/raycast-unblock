@@ -12,4 +12,5 @@ export interface GeneralConfig {
     ca?: string
     host?: string
   }
+  token?: string
 }
