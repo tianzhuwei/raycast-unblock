@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import process from 'node:process'
 import consola from 'consola'
 import { argv } from 'zx'
-import { parse } from 'toml'
+import TOML from '@iarna/toml'
 import destr from 'destr'
 import type { Config } from '../types/config'
 import { Debug } from './log.util'
@@ -66,11 +66,12 @@ export function injectEnv() {
 
   const config = matchKeyInObject(argv, 'config') || 'config.toml'
   if (fs.existsSync(config)) {
-    let env = parse(fs.readFileSync(config, 'utf-8')) as Config
+    let env = TOML.parse(fs.readFileSync(config, 'utf-8')) as Config
     env = tolowerCaseInObject(env)
     env = toCamelCaseInObject(env)
     env = checkDefault(env)
     process.env.config = JSON.stringify(env)
+    process.env.configPath = config
     Debug.native.log(env)
   }
   else if (matchKeyInObject(argv, 'config')) { // Only exit if the flag [--config] is used
@@ -91,7 +92,9 @@ export function watchConfig() {
   }
 }
 
-export function getConfig<T extends keyof Config>(key?: T, inKey?: string): Config[T] {
+export function getConfig(key?: undefined, inKey?: undefined): Config
+export function getConfig<T extends keyof Config>(key: T, inKey?: string): Config[T]
+export function getConfig<T extends keyof Config>(key: T, inKey?: string): Config[T] {
   const env = process.env.config
   if (env) {
     const debug = Debug.create('Config')
@@ -119,7 +122,18 @@ export function getConfig<T extends keyof Config>(key?: T, inKey?: string): Conf
       }
       return config[key]
     }
-    return config as Config[T]
+    return config as Config
   }
-  return {} as Config[T]
+  return {} as Config
+}
+
+export function writeConfig(config: Config) {
+  const configPath = process.env.configPath
+  if (configPath) {
+    // console.log(TOML.stringify(JSON.parse(JSON.stringify(config))))
+    const _ = TOML.stringify(JSON.parse(JSON.stringify(config)))
+
+    // fs.writeFileSync(configPath, )
+    consola.info('The configuration file has been updated.')
+  }
 }

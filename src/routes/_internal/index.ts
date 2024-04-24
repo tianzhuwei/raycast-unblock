@@ -4,10 +4,10 @@ import { getStore } from '../../utils/store.util'
 import type { User } from '../../types'
 import { getConfig } from '../../utils/env.util'
 
-export function InternalUsersRoute(fastify: FastifyInstance, opts: Record<any, any>, done: Function) {
+export function InternalRoute(fastify: FastifyInstance, opts: Record<any, any>, done: Function) {
   fastify.addHook('preHandler', async (request: FastifyRequest, reply: FastifyReply) => {
     const { token } = request.headers
-    const debug = Debug.create('route:_internal:users')
+    const debug = Debug.create('route:_internal')
     const config = getConfig('general')?.token
     if (config && token !== config) {
       debug.warn('Unauthorized access')
@@ -21,8 +21,8 @@ export function InternalUsersRoute(fastify: FastifyInstance, opts: Record<any, a
       debug.info('Authorized access')
     }
   })
-  fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
-    Debug.info('[GET] /users --> Internal API')
+  fastify.get('/users', async (request: FastifyRequest, reply: FastifyReply) => {
+    Debug.info('[GET] /_internal/users --> Internal API')
     const store = getStore<User[]>('users') || []
     const users = store.map((u) => {
       const { token: _, ...user } = u
@@ -30,6 +30,8 @@ export function InternalUsersRoute(fastify: FastifyInstance, opts: Record<any, a
     })
     return reply.send({ users })
   })
-
+  fastify.post('/model', async (request: FastifyRequest, reply: FastifyReply) => {
+    return reply.send({ message: 'Not implemented' })
+  })
   done()
 }

@@ -14,10 +14,9 @@ import { TranslationsRoute } from './routes/translations'
 import { Debug } from './utils/log.util'
 import { getConfig } from './utils/env.util'
 import { TrashRoute } from './routes/trash'
-
 import { type SelfSignedCertificate, createSelfSignedCertificate } from './utils/mkcert'
 import { cronJobs } from './cron-jobs'
-import { InternalUsersRoute } from './routes/_internal/users'
+import { InternalRoute } from './routes/_internal'
 
 const prefix = '/api/v1'
 
@@ -58,7 +57,7 @@ export async function launch() {
   })
 
   fastify.register(TrashRoute)
-  fastify.register(InternalUsersRoute, { prefix: `_internal/users` })
+  fastify.register(InternalRoute, { prefix: `_internal` })
   fastify.register(MeRoute, { prefix: `${prefix}/me` })
   fastify.register(AIRoute, { prefix: `${prefix}/ai` })
   fastify.register(TranslationsRoute, { prefix: `${prefix}/translations` })
