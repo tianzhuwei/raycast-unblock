@@ -4,7 +4,7 @@ import consola from 'consola'
 import { argv } from 'zx'
 import TOML from '@iarna/toml'
 import destr from 'destr'
-import type { Config } from '../types/config'
+import type { Config } from '@ru/shared'
 import { Debug } from './log.util'
 import { getValueFromDotNotation, matchKeyInObject, toCamelCaseInObject, tolowerCaseInObject } from './others.util'
 

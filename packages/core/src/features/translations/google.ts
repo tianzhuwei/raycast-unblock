@@ -1,6 +1,6 @@
 import translate from '@iamtraction/google-translate'
 import type { FastifyRequest } from 'fastify'
-import type { TranslateFrom, TranslateTo } from '../../types/raycast/translate'
+import type { TranslateFrom, TranslateTo } from '@ru/shared'
 
 export async function TranslateWithGoogle(request: FastifyRequest): Promise<TranslateTo> {
   const body = request.body as TranslateFrom

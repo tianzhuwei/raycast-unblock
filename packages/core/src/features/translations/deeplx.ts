@@ -1,7 +1,7 @@
 import type { FastifyRequest } from 'fastify'
 import { query } from '@ifyour/deeplx'
 import type { SourceLang, TargetLang } from '@ifyour/deeplx/dist/types'
-import type { TranslateFrom, TranslateTo } from '../../types/raycast/translate'
+import type { TranslateFrom, TranslateTo } from '@ru/shared'
 import { getConfig } from '../../utils/env.util'
 
 export async function TranslateWithDeepLX(request: FastifyRequest): Promise<TranslateTo> {

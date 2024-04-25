@@ -1,12 +1,11 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import consola from 'consola'
+import type { CohereWebServiceConfig, RaycastCompletions } from '@ru/shared'
 import { getConfig } from '../../utils/env.util'
 import { GeminiChatCompletion } from '../../features/ai/completions/gemini'
 import { OpenAIChatCompletion } from '../../features/ai/completions/openai'
-import type { RaycastCompletions } from '../../types/raycast/completions'
 import { GroqWebCompletions } from '../../features/ai/completions/groq-web'
 import { CohereWebCompletions } from '../../features/ai/completions/cohere-web'
-import type { CohereWebServiceConfig } from '../../types/config/ai'
 import { CohereAPICompletions } from '../../features/ai/completions/cohere-api'
 
 export async function Completions(request: FastifyRequest, reply: FastifyReply) {

@@ -1,7 +1,7 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
+import type { User } from '@ru/shared'
 import { Debug } from '../../utils/log.util'
 import { getStore } from '../../utils/store.util'
-import type { User } from '../../types'
 import { getConfig } from '../../utils/env.util'
 
 export function InternalRoute(fastify: FastifyInstance, opts: Record<any, any>, done: Function) {

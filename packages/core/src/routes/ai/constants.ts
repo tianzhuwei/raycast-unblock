@@ -1,4 +1,4 @@
-import type { RaycastAIModels } from '../../types/raycast/models'
+import type { RaycastAIModels } from '@ru/shared'
 
 export const OPENAI_SERVICE_PROVIDERS: RaycastAIModels = [
   {

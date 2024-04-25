@@ -6,7 +6,6 @@ RUN npm i -g pnpm@8.15.1
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY patches ./patches
 RUN pnpm install
 
 COPY . .

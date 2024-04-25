@@ -3,8 +3,8 @@ import { resolve } from 'node:path'
 import type { FastifyRequest } from 'fastify'
 import destr from 'destr'
 import consola from 'consola'
+import type { User } from '@ru/shared'
 import { getStore } from '../../utils/store.util'
-import type { User } from '../../types'
 import { getSyncFolder } from './pre'
 
 export function GetCloudSync(request: FastifyRequest) {

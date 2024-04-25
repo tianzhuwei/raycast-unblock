@@ -1,6 +1,17 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist"
-  }
+    "composite": true,
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"]
 }

@@ -1,6 +1,6 @@
+import type { AIGenerateContent } from '@ru/shared'
 import { generateGroqWebRequestHeader } from '../../../services/groq-web'
 import { GROQ_API_COMPLETIONS } from '../../../services/groq-web/constants'
-import type { AIGenerateContent } from '../../../types/internal/ai-generate-content'
 import { groqClient } from '../../../utils'
 import { getConfig } from '../../../utils/env.util'
 

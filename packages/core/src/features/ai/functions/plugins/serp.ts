@@ -1,6 +1,6 @@
 import { ofetch } from 'ofetch'
+import type { IAvailableFunction } from '@ru/shared'
 import { getConfig } from '../../../../utils/env.util'
-import type { IAvailableFunction } from '../../../../types/internal/i-available-functions'
 
 export async function Serp(query: string) {
   const payload = JSON.stringify({ keyword: query })

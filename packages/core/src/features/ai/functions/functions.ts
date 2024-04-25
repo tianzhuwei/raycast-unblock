@@ -1,4 +1,4 @@
-import type { IAvailableFunctions } from '../../../types/internal/i-available-functions'
+import type { IAvailableFunctions } from '@ru/shared'
 import { SerpConfig } from './plugins/serp'
 import { WebSearchConfig } from './plugins/web-search'
 

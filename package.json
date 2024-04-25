@@ -35,6 +35,8 @@
     "bundle": "sh scripts/single-application.sh",
     "build:core": "pnpm -C packages/core build",
     "build:docs": "pnpm -C packages/docs docs:build",
+    "build:ray": "pnpm -C packages/raycast build",
+    "dev:ray": "pnpm -C packages/raycast dev",
     "lint": "eslint .",
     "release": "bumpp",
     "typecheck": "tsc --noEmit",
@@ -52,12 +54,7 @@
     "pnpm": "^8.15.1",
     "simple-git-hooks": "^2.9.0",
     "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "fastify-sse-v2@3.1.2": "patches/fastify-sse-v2@3.1.2.patch"
-    }
+    "typescript": "^5.4.5"
   },
   "resolutions": {
     "@babel/traverse": "7.23.9",

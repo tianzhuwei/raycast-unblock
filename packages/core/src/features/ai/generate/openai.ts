@@ -1,6 +1,6 @@
 import OpenAI from 'openai'
+import type { AIGenerateContent } from '@ru/shared'
 import { getConfig } from '../../../utils/env.util'
-import type { AIGenerateContent } from '../../../types/internal/ai-generate-content'
 
 export async function OpenaiGenerateContent(prompt: {
   role: string

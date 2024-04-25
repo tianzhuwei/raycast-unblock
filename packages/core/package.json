@@ -1,5 +1,5 @@
 {
-  "name": "core",
+  "name": "@ru/core",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -41,7 +41,6 @@
     "destr": "^2.0.2",
     "fastify": "^4.26.0",
     "fastify-cron": "^1.3.1",
-    "fastify-sse-v2": "^3.1.2",
     "jsonwebtoken": "^9.0.2",
     "openai": "^4.26.0",
     "uuid": "^9.0.1",
@@ -53,9 +52,11 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@ru/shared": "workspace:*",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/uuid": "^9.0.8",
     "esno": "^4.0.0",
+    "fastify-sse-v2": "4.0.0",
     "rollup": "^4.9.6",
     "rollup-plugin-esbuild": "^6.1.1",
     "unbuild": "^2.0.0"

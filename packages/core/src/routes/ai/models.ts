@@ -1,4 +1,4 @@
-import type { RaycastAIModel } from '../../types/raycast/models'
+import type { RaycastAIModel } from '@ru/shared'
 import { getConfig } from '../../utils/env.util'
 import { COHERE_SERVICE_PROVIDERS, GEMINI_SERVICE_PROVIDERS, GROQ_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_GROQ_MODELS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
 

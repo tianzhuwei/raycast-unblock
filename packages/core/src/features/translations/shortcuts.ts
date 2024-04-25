@@ -1,8 +1,7 @@
 import type { FastifyRequest } from 'fastify'
+import type { TranslateFrom, TranslateShortcutBody, TranslateTo } from '@ru/shared'
 import { TRANSLATE_SHORTCUT } from '../../constants'
 import { runShortcut } from '../../utils/shortcuts.util'
-import type { TranslateShortcutBody } from '../../types/internal/translate-shortcut-body'
-import type { TranslateFrom, TranslateTo } from '../../types/raycast/translate'
 import { TRANSLATE_DICT } from './dict'
 
 export async function TranslateWithShortcut(request: FastifyRequest): Promise<TranslateTo> {

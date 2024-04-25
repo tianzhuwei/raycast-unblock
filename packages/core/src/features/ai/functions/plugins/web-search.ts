@@ -1,5 +1,5 @@
 import { ofetch } from 'ofetch'
-import type { IAvailableFunction } from '../../../../types/internal/i-available-functions'
+import type { IAvailableFunction } from '@ru/shared'
 
 /**
  * Search Google and return top 10 results

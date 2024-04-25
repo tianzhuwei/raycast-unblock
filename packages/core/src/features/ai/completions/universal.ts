@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import destr from 'destr'
-import type { RaycastCompletions } from '../../../types/raycast/completions'
+import type { RaycastCompletions } from '@ru/shared'
 import { getConfig } from '../../../utils/env.util'
 import { processStream } from '../../../utils/stream-reader.util'
 

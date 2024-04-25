@@ -9,3 +9,8 @@ export interface Config {
   translate?: TranslateConfig
   sync?: SyncConfig
 }
+
+export * from './ai'
+export * from './general'
+export * from './sync'
+export * from './translate'

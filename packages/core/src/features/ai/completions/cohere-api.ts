@@ -1,9 +1,10 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { CohereClient } from 'cohere-ai'
 import type { ChatMessageRole } from 'cohere-ai/api'
+import type { RaycastCompletions } from '@ru/shared'
 import { getConfig } from '../../../utils/env.util'
 import { Debug } from '../../../utils/log.util'
-import type { RaycastCompletions } from '../../../types/raycast/completions'
+
 import { PreUniversalAICompletions } from './universal'
 
 export async function CohereAPICompletions(request: FastifyRequest, reply: FastifyReply) {

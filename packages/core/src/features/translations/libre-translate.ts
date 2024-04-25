@@ -1,7 +1,7 @@
 import type { FastifyRequest } from 'fastify'
+import type { TranslateFrom, TranslateTo } from '@ru/shared'
 import { TranslateWithLibreTranslateReverseAPI } from '../../services/libre-translate/reverse'
 import { FetchLibreTranslateAPI } from '../../services/libre-translate'
-import type { TranslateFrom, TranslateTo } from '../../types/raycast/translate'
 import { getConfig } from '../../utils/env.util'
 
 export async function TranslateWithLibreTranslate(request: FastifyRequest): Promise<TranslateTo> {

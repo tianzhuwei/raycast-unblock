@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
+import type { AIGenerateContent } from '@ru/shared'
 import { getConfig } from '../../../utils/env.util'
-import type { AIGenerateContent } from '../../../types/internal/ai-generate-content'
 
 export async function GeminiGenerateContent(msg: string): Promise<AIGenerateContent> {
   const aiConfig = getConfig('ai')
