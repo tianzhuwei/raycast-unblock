@@ -1,6 +1,7 @@
 OS=''
-TMP_NODE=./packages/core/dist/node-tmp
+TMP_NODE=./dist/node-tmp
 
+mkdir -p ./dist
 if [ "$(uname)" == "Darwin" ]; then
     OS='mac'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -27,6 +28,7 @@ if [ "$OS" == "linux" ]; then
     --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2
 fi
 
-mv $TMP_NODE dist/raycast-unblock-app
+mv $TMP_NODE ./dist/raycast-unblock-app
+
 
 echo "Done"

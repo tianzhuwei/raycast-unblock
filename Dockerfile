@@ -5,14 +5,10 @@ RUN npm i -g pnpm@8.15.1
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN pnpm install
-
 COPY . .
+RUN pnpm install
 RUN pnpm build:core
 RUN pnpm bundle
-RUN mv packages/core/dist dist
-
 
 FROM --platform=$BUILDPLATFORM alpine:3.19 AS runner
 
