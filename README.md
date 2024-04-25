@@ -19,11 +19,17 @@ We only borrowed the **operation interface** of Raycast, and **did not modify th
 
 We just coded a proxy server to forward Raycast's requests to our proxy server, and **implemented similar functions** in Raycast Pro Plan **in other ways**.
 
-You can see all the code in the `src` directory. If you have any questions, please feel free to ask.
-
 ## Getting Started
 
 Please follow the documentation at [wibus-wee.github.io/raycast-unblock](https://wibus-wee.github.io/raycast-unblock/)!
+
+## Repo Structure
+
+It's a monorepo managed by [pnpm](https://pnpm.io/).
+
+- [core](./packages/core/) - The Raycast Unblock program.
+- [docs](./packages/docs/) - The documentation.
+- [shared](./packages/shared/) - Shared code between packages.
 
 ## Star History
 
