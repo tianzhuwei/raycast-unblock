@@ -56,7 +56,8 @@ export const GROQ_SERVICE_PROVIDERS: RaycastAIModels = [
     features: ['chat', 'quick_ai', 'commands', 'api', 'emoji_search'],
     capabilities: {},
     in_better_ai_subscription: true,
-    status: null,
+    status: 'deprecated',
+    availability: 'deprecated',
   },
   {
     id: 'llama3-8b-8192',

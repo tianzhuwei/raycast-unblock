@@ -43,6 +43,25 @@ function generateRaycastAIServiceProviders() {
     default_models.push(...GROQ_SERVICE_PROVIDERS)
   if (config?.cohere && !config?.cohere.disable)
     default_models.push(...COHERE_SERVICE_PROVIDERS)
+  default_models.forEach((models) => {
+    if (!Array.isArray(models))
+      models = [models]
+
+    models.forEach((model) => {
+      if (!model.availability)
+        model.availability = 'public'
+      if (!model.status)
+        model.status = null
+      const abilities: {
+        [key: string]: {
+          toggleable: boolean
+        }
+      } = {}
+      for (const [key] of Object.entries(model.capabilities || {}))
+        abilities[key] = { toggleable: true }
+      model.abilities = abilities
+    })
+  })
   return default_models.flat()
 }
 
