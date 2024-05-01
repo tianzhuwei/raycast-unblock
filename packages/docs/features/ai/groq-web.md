@@ -2,6 +2,12 @@
 
 Raycast Unblock offers Groq Web AI support. You can use Groq's models for free via their Web API.
 
+::: danger
+We found *Cloudflare protection*, which caused our program to fail to interact with `api.groq.com` normally. You can go to [wibus-wee/raycast-unblock#72](https://github.com/wibus-wee/raycast-unblock/issues/72) for more details.
+
+We will try to solve this problem as soon as possible. **_You can't use this feature until we fix it._**
+:::
+
 ::: warning
 This is an inverted API. Please use with caution.
 :::
@@ -14,7 +20,7 @@ This is an inverted API. Please use with caution.
 
 3. Copy the value of the `Authorization` header, which will be in the format `Basic xxx`.
 
-4. In your configuration file, set `refreshToken` in `[AI.Groq] to the copied value (a placeholder value is already provided in the example configuration).
+4. In your configuration file, set `refreshToken` in `[AI.Groq]` to the copied value (a placeholder value is already provided in the example configuration).
 
 ## Configuration
 
