@@ -31,6 +31,14 @@ It's a monorepo managed by [pnpm](https://pnpm.io/).
 - [docs](./packages/docs/) - The documentation.
 - [shared](./packages/shared/) - Shared code between packages.
 
+## Related Projects
+
+Here are some similar projects to this one, welcome to check:
+
+- [ourongxing/fake-raycast-backend](https://github.com/ourongxing/fake-raycast-backend) - A fake Raycast backend that can be deployed to Vercel in just one step. *(Based on this project)*
+- [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge) - Utilize Surge's MiTM capability to intercept requests and leverage Docker services to emulate backend operations, enabling the activation of Raycast.
+- [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy) - This is a simple Raycast AI API proxy.
+
 ## Star History
 
 <a href="https://star-history.com/#wibus-wee/raycast-unblock&Date">
