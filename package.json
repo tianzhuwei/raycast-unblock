@@ -37,6 +37,7 @@
     "build:docs": "pnpm -C packages/docs docs:build",
     "build:ray": "pnpm -C packages/raycast build",
     "dev:ray": "pnpm -C packages/raycast dev",
+    "dev:core": "pnpm -C packages/core dev",
     "lint": "eslint .",
     "release": "bumpp",
     "typecheck": "tsc --noEmit",
