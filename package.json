@@ -48,17 +48,17 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.16.1",
-    "@types/node": "^20.11.16",
-    "bumpp": "^9.3.0",
-    "eslint": "^8.56.0",
+    "@types/node": "^20.12.8",
+    "bumpp": "^9.4.1",
+    "eslint": "^8.57.0",
     "lint-staged": "^15.2.0",
     "pnpm": "^9.0.6",
-    "simple-git-hooks": "^2.9.0",
+    "simple-git-hooks": "^2.11.1",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"
   },
   "resolutions": {
-    "@babel/traverse": "7.23.9",
+    "@babel/traverse": "7.24.5",
     "node-fetch": "./external/node-fetch"
   },
   "simple-git-hooks": {
