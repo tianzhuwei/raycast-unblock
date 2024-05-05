@@ -58,10 +58,8 @@ export function MeRoute(fastify: FastifyInstance, opts: Record<any, any>, done: 
         email: backendResponse.email,
         tokens: [request.headers.authorization, ...user?.tokens || []],
       } as User
-      setStore('users', [
-        ...getStore<User[]>('users') || [],
-        store,
-      ])
+      const originalStore = getStore<User[]>('users') || []
+      setStore('users', [store, ...originalStore.filter(u => u.email !== backendResponse.email)])
     }
 
     return reply.send(backendResponse)

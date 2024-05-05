@@ -24,11 +24,7 @@ export function InternalRoute(fastify: FastifyInstance, opts: Record<any, any>, 
   fastify.get('/users', async (request: FastifyRequest, reply: FastifyReply) => {
     Debug.info('[GET] /_internal/users --> Internal API')
     const store = getStore<User[]>('users') || []
-    const users = store.map((u) => {
-      const { tokens: _, ...user } = u
-      return user // Omit the token
-    })
-    return reply.send({ users })
+    return reply.send({ users: store })
   })
   fastify.post('/model', async (request: FastifyRequest, reply: FastifyReply) => {
     return reply.send({ message: 'Not implemented' })
