@@ -17,6 +17,7 @@ import { TrashRoute } from './routes/trash'
 import { type SelfSignedCertificate, createSelfSignedCertificate } from './utils/mkcert'
 import { cronJobs } from './cron-jobs'
 import { InternalRoute } from './routes/_internal'
+import { ExtensionsRoute } from './routes/extensions'
 
 const prefix = '/api/v1'
 
@@ -61,6 +62,7 @@ export async function launch() {
   fastify.register(MeRoute, { prefix: `${prefix}/me` })
   fastify.register(AIRoute, { prefix: `${prefix}/ai` })
   fastify.register(TranslationsRoute, { prefix: `${prefix}/translations` })
+  fastify.register(ExtensionsRoute, { prefix: `${prefix}/extensions` })
 
   await fastify.register(fastifyCompress, {
     global: true,
