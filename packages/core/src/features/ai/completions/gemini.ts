@@ -1,3 +1,4 @@
+import type { Content } from '@google/generative-ai'
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from '@google/generative-ai'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import type { RaycastCompletions } from '@ru/shared'
@@ -11,7 +12,7 @@ export async function GeminiChatCompletion(request: FastifyRequest, reply: Fasti
 
   const body = request.body as RaycastCompletions
   let system_message = ''
-  const google_message = []
+  const google_message = [] as Content[]
   let temperature = config?.temperature || aiConfig?.temperature || 0.5
   const messages = body.messages
   for (const message of messages) {
@@ -27,7 +28,9 @@ export async function GeminiChatCompletion(request: FastifyRequest, reply: Fasti
     if ('text' in message.content) {
       google_message.push({
         role: message.author === 'user' ? 'user' : 'model',
-        parts: message.content.text,
+        parts: [{
+          text: message.content.text,
+        }],
       })
     }
     if ('temperature' in message.content)
@@ -39,7 +42,9 @@ export async function GeminiChatCompletion(request: FastifyRequest, reply: Fasti
     msg = `${system_message}\n${msg}`
   }
   else { // if there is a message, and it's not the first message
-    google_message[0].parts = `${system_message}\n\n${google_message[0].parts}`
+    google_message[0].parts = [{
+      text: `${system_message}\n\n${google_message[0].parts[0].text}`,
+    }]
   }
   // const result = await model.generateContentStream(system_message)
   const chat = model.startChat({

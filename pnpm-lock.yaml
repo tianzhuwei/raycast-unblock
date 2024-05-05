@@ -53,8 +53,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0
       '@google/generative-ai':
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.10.0
+        version: 0.10.0
       '@iamtraction/google-translate':
         specifier: ^2.0.1
         version: 2.0.1
@@ -875,8 +875,8 @@ packages:
   '@fastify/fast-json-stringify-compiler@4.3.0':
     resolution: {integrity: sha512-aZAXGYo6m22Fk1zZzEUKBvut/CIIQe/BapEORnxiD5Qr0kPHqqI69NtEMCme74h+at72sPhbkb4ZrLd1W3KRLA==}
 
-  '@google/generative-ai@0.2.0':
-    resolution: {integrity: sha512-ivlJS7H/9YY1CMrGmcSXm7CRGDept5uvamIEZwHrInX0lA4K55U2YEjQyhRV+M0wgYix6EezEVCJzSdvxeZEkA==}
+  '@google/generative-ai@0.10.0':
+    resolution: {integrity: sha512-fZJEL8DcDgvBCguLdaAdBBEoh+83LDXK3m9rVh5iksvwVJDgZqkpsLGKJuM5FEBKltWhbJ62WSyMEUGgy8eMUg==}
     engines: {node: '>=18.0.0'}
 
   '@humanwhocodes/config-array@0.11.13':
@@ -4358,7 +4358,7 @@ snapshots:
     dependencies:
       fast-json-stringify: 5.11.1
 
-  '@google/generative-ai@0.2.0': {}
+  '@google/generative-ai@0.10.0': {}
 
   '@humanwhocodes/config-array@0.11.13':
     dependencies:
