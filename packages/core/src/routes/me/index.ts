@@ -42,8 +42,11 @@ export function MeRoute(fastify: FastifyInstance, opts: Record<any, any>, done: 
     Debug.info('[GET] /me <-- Backend Response')
     const store = getStore<User[]>('users') || []
     const user = store.find(u => u.email === backendResponse.email) || null
-    if (user?.token !== request.headers.authorization) {
+    if (!user)
       Debug.success(`<${backendResponse.email}> is logged in.`)
+    // Multiple tokens can be stored for the same user
+    if (!user?.tokens.includes(request.headers.authorization || '')) {
+      Debug.success(`New device detected for <${backendResponse.email}>`)
       const store = {
         id: backendResponse.id,
         avatar: {
@@ -53,10 +56,10 @@ export function MeRoute(fastify: FastifyInstance, opts: Record<any, any>, done: 
         name: backendResponse.name,
         username: backendResponse.username,
         email: backendResponse.email,
-        token: request.headers.authorization,
+        tokens: [request.headers.authorization, ...user?.tokens || []],
       } as User
       setStore('users', [
-        ...getStore<User[]>('users').filter(u => u.email !== backendResponse.email),
+        ...getStore<User[]>('users') || [],
         store,
       ])
     }

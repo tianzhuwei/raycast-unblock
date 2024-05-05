@@ -8,7 +8,7 @@ export interface User {
   username: string
   // avatar_placeholder_color: string
   email: string
-  token: string
+  tokens: string[]
 }
 
 export * from './config'

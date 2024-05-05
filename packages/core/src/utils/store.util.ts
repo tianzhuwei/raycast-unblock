@@ -3,6 +3,7 @@ import { transformToObj, transformToString } from './others.util'
 
 export function setStore(key: keyof typeof process.env, value: any) {
   process.env[key] = transformToString(value)
+  return process.env[key]
 }
 
 export function getStore<T>(key: keyof typeof process.env) {

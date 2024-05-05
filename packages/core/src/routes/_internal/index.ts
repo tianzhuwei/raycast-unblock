@@ -25,7 +25,7 @@ export function InternalRoute(fastify: FastifyInstance, opts: Record<any, any>, 
     Debug.info('[GET] /_internal/users --> Internal API')
     const store = getStore<User[]>('users') || []
     const users = store.map((u) => {
-      const { token: _, ...user } = u
+      const { tokens: _, ...user } = u
       return user // Omit the token
     })
     return reply.send({ users })

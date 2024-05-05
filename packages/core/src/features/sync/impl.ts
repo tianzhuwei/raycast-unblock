@@ -11,7 +11,7 @@ export function GetCloudSync(request: FastifyRequest) {
   const headers = request.headers
   const token = headers.authorization
   const users = getStore<User[]>('users') || []
-  const user = users.find(u => u.token === token)
+  const user = users.find(u => u.tokens.includes(token || ''))
   const failed = {
     updated: [],
     updated_at: null,
@@ -50,7 +50,7 @@ export function PutCloudSync(request: FastifyRequest) {
   }
   const token = headers.authorization
   const users = getStore<User[]>('users') || []
-  const user = users.find(u => u.token === token)
+  const user = users.find(u => u.tokens.includes(token || ''))
   const failed = {
     updated: [],
     updated_at: null,
