@@ -6,6 +6,8 @@ RUN npm i -g pnpm@8.15.1
 WORKDIR /app
 
 COPY . .
+# Exclude packages/raycast -- just delete it...
+RUN rm -rf packages/raycast
 RUN pnpm install
 RUN pnpm build:core
 RUN pnpm bundle
