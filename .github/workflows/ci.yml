@@ -128,6 +128,6 @@ jobs:
           upload_url: https://uploads.github.com/repos/wibus-wee/raycast-unblock/releases/154304368/assets{?name,label}
           release_id: 154304368
           asset_path: ./dist/raycast-unblock-extension.zip
-          asset_name: raycast-unblock-extension-$$.zip
+          asset_name: raycast-unblock-extension.zip
           asset_content_type: application/zip
           max_releases: 7
