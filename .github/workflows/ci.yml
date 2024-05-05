@@ -16,6 +16,9 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  write-all
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -91,6 +94,12 @@ jobs:
           nr build:core
           sh scripts/single-application.sh
 
+      - name: Build Raycast Extension (macOS Only)
+        if: matrix.os == 'macos-latest'
+        run: |
+          nr build:ray
+          mv packages/raycast/dist dist/raycast-unblock
+          zip -r dist/raycast-unblock-extension.zip dist/raycast-unblock
       - name: Upload Artifact for JS
         uses: actions/upload-artifact@v4
         with:
@@ -102,3 +111,23 @@ jobs:
         with:
           name: raycast-unblock-${{ matrix.os }}-${{ matrix.node }}-app
           path: dist/raycast-unblock-app
+
+      - name: Upload Artifact for Raycast Extension
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: raycast-unblock-${{ matrix.os }}-${{ matrix.node }}-ray
+          path: dist/raycast-unblock-extension.zip
+
+      - name: Upload a Build Artifact to CI Release
+        if: github.ref == 'refs/heads/main' && matrix.os == 'macos-latest'
+        uses: WebFreak001/deploy-nightly@v1.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: https://uploads.github.com/repos/wibus-wee/raycast-unblock/releases/154304368/assets{?name,label}
+          release_id: 154304368
+          asset_path: ./dist/raycast-unblock-extension.zip
+          asset_name: raycast-unblock-extension-$$.zip
+          asset_content_type: application/zip
+          max_releases: 7
