@@ -1,0 +1,52 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "raycast-unblock",
+  "title": "Raycast Unblock",
+  "description": "A controller for RaycastUnblock",
+  "author": "wibus-wee",
+  "license": "MIT",
+  "categories": [
+    "Applications"
+  ],
+  "icon": "command-icon.png",
+  "commands": [
+    {
+      "name": "open-dashboard",
+      "title": "Open Dashboard",
+      "description": "Open the dashboard of Raycast Unblock",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "title": "API URL",
+      "name": "apiUrl",
+      "description": "The URL of the Raycast Unblock Internal API",
+      "type": "textfield",
+      "required": true,
+      "placeholder": "http://127.0.0.1:3000"
+    },
+    {
+      "title": "Access Token",
+      "name": "accessToken",
+      "description": "The token to access the Raycast Unblock Internal API",
+      "type": "password",
+      "required": true
+    }
+  ],
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@raycast/api": "^1.71.4",
+    "@raycast/utils": "^1.14.0",
+    "valtio": "^1.13.2"
+  },
+  "devDependencies": {
+    "@ru/shared": "workspace:^",
+    "@types/react": "18.2.27",
+    "typescript": "^5.3.3"
+  }
+}

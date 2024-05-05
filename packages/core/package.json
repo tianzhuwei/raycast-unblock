@@ -28,7 +28,8 @@
     "build:rollup": "NODE_OPTIONS=--max-old-space-size=4096 rollup -c",
     "dev": "pnpm start:dev",
     "start": "esno src/index.ts",
-    "start:dev": "esno watch src/index.ts"
+    "start:dev": "esno watch src/index.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@azure/openai": "1.0.0-beta.12",

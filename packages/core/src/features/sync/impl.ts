@@ -91,3 +91,12 @@ export function PutCloudSync(request: FastifyRequest) {
     updated_at,
   }
 }
+
+export function getLastSyncTime(email: string) {
+  const filePath = resolve(getSyncFolder(), `sync-${email}.json`)
+  if (!fs.existsSync(filePath))
+    return null
+
+  const content = destr<any>(fs.readFileSync(filePath, 'utf-8'))
+  return content.updated_at
+}

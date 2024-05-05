@@ -3,6 +3,7 @@ import type { User } from '@ru/shared'
 import { Debug } from '../../utils/log.util'
 import { getStore } from '../../utils/store.util'
 import { getConfig } from '../../utils/env.util'
+import { getLastSyncTime } from '../../features/sync/impl'
 
 export function InternalRoute(fastify: FastifyInstance, opts: Record<any, any>, done: Function) {
   fastify.addHook('preHandler', async (request: FastifyRequest, reply: FastifyReply) => {
@@ -21,13 +22,19 @@ export function InternalRoute(fastify: FastifyInstance, opts: Record<any, any>, 
       debug.info('Authorized access')
     }
   })
-  fastify.get('/users', async (request: FastifyRequest, reply: FastifyReply) => {
+  fastify.get('/users', async (_request: FastifyRequest, reply: FastifyReply) => {
     Debug.info('[GET] /_internal/users --> Internal API')
     const store = getStore<User[]>('users') || []
-    return reply.send({ users: store })
+    const users = store.map((user) => {
+      const { email } = user
+      const lastSync = getLastSyncTime(email)
+      return {
+        ...user,
+        lastSync,
+      }
+    })
+    return reply.send({ users })
   })
-  fastify.post('/model', async (request: FastifyRequest, reply: FastifyReply) => {
-    return reply.send({ message: 'Not implemented' })
-  })
+
   done()
 }

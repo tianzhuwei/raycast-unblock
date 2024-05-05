@@ -29,6 +29,7 @@ It's a monorepo managed by [pnpm](https://pnpm.io/).
 
 - [core](./packages/core/) - The Raycast Unblock program.
 - [docs](./packages/docs/) - The documentation.
+- [raycast](./packages/raycast/) - The Raycast extension.
 - [shared](./packages/shared/) - Shared code between packages.
 
 ## Related Projects

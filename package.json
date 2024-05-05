@@ -36,11 +36,12 @@
     "build:core": "pnpm -C packages/core build",
     "build:docs": "pnpm -C packages/docs docs:build",
     "build:ray": "pnpm -C packages/raycast build",
-    "dev:ray": "pnpm -C packages/raycast dev",
     "dev:core": "pnpm -C packages/core dev",
+    "dev:docs": "pnpm -C packages/docs docs:dev",
+    "dev:ray": "pnpm -C packages/raycast dev",
     "lint": "eslint .",
-    "release": "bumpp",
     "typecheck": "tsc --noEmit",
+    "release": "bumpp",
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
@@ -55,11 +56,10 @@
     "pnpm": "^9.0.6",
     "simple-git-hooks": "^2.11.1",
     "tslib": "^2.6.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.0"
   },
   "resolutions": {
-    "@babel/traverse": "7.24.5",
-    "node-fetch": "./external/node-fetch"
+    "@babel/traverse": "7.24.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
