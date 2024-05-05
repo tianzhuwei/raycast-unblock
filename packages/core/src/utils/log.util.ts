@@ -5,7 +5,7 @@ import { getConfig } from './env.util'
 
 declare global {
   interface Console {
-    success(message: any, ...args: any[]): void
+    success: (message: any, ...args: any[]) => void
   }
 }
 
