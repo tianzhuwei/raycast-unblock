@@ -1,7 +1,7 @@
 import { ofetch } from 'ofetch'
 import { v4 } from 'uuid'
 import { Debug } from '../../utils/log.util'
-import { FetchLibreTranslateAPI } from '.'
+import { FetchLibreTranslateAPI } from './tools'
 
 const app = 'https://libretranslate.com/js/app.js'
 const regex = /apiSecret:\s*['"]([^'"]+)['"]/
