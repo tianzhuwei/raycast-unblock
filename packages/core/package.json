@@ -46,6 +46,7 @@
     "fetch-cookie": "^3.0.1",
     "jsonwebtoken": "^9.0.2",
     "openai": "^4.40.2",
+    "tough-cookie": "^4.1.4",
     "uuid": "^9.0.1",
     "zx": "^7.2.3"
   },
@@ -57,6 +58,7 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@ru/shared": "workspace:*",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/tough-cookie": "^4.0.5",
     "@types/uuid": "^9.0.8",
     "esno": "^4.7.0",
     "fastify-sse-v2": "4.0.0",

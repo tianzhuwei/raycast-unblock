@@ -87,6 +87,9 @@ importers:
       openai:
         specifier: ^4.40.2
         version: 4.40.2
+      tough-cookie:
+        specifier: ^4.1.4
+        version: 4.1.4
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
@@ -115,6 +118,9 @@ importers:
       '@types/jsonwebtoken':
         specifier: ^9.0.6
         version: 9.0.6
+      '@types/tough-cookie':
+        specifier: ^4.0.5
+        version: 4.0.5
       '@types/uuid':
         specifier: ^9.0.8
         version: 9.0.8
@@ -1277,6 +1283,9 @@ packages:
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
+
+  '@types/tough-cookie@4.0.5':
+    resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
 
   '@types/unist@2.0.6':
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
@@ -4834,6 +4843,8 @@ snapshots:
   '@types/resolve@1.20.2': {}
 
   '@types/semver@7.5.8': {}
+
+  '@types/tough-cookie@4.0.5': {}
 
   '@types/unist@2.0.6': {}
 
