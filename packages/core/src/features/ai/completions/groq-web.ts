@@ -12,7 +12,7 @@ export async function GroqWebCompletions(request: FastifyRequest, reply: Fastify
 
   const headers = await generateGroqWebRequestHeader()
 
-  const res = await groqClient.native(`${GROQ_API_ENDPOINT}${GROQ_API_COMPLETIONS}`, {
+  const res = await groqClient(`${GROQ_API_ENDPOINT}${GROQ_API_COMPLETIONS}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(body),

@@ -14,11 +14,11 @@ interface GroqWebCache {
 }
 
 async function getUserProfile() {
-  return await groqClient<UserProfile>(GROQ_API_USER_PROFILE, {
+  return await groqClient(GROQ_API_USER_PROFILE, {
     headers: {
       authorization: `Bearer ${(await getGroqCacheAndAutoRefresh()).jwt}`,
     },
-  })
+  }).then(res => res.json() as Promise<UserProfile>)
 }
 
 async function refreshJWT() {
@@ -28,9 +28,9 @@ async function refreshJWT() {
   if (refreshToken.includes('Basic '))
     refreshToken.replace('Basic ', '')
   debug.info(`Fetching refreshedJwt`)
-  const res = await groqClient<TokenResponse>(GROQ_REFRESH_TOKEN_API, {
+  const res = await groqClient(GROQ_REFRESH_TOKEN_API, {
     method: 'POST',
-    body: {},
+    body: JSON.stringify({}),
     headers: {
       'Authorization': `Basic ${refreshToken}`,
       'origin': 'https://groq.com',
@@ -39,7 +39,7 @@ async function refreshJWT() {
       'x-sdk-parent-host': 'https://groq.com',
       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
     },
-  })
+  }).then(res => res.json() as Promise<TokenResponse>)
   const newJwt = res.data.session_jwt
   const now = new Date()
   const expiresAt = new Date(now.setMinutes(now.getMinutes() + 5))

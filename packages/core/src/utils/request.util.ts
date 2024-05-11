@@ -1,6 +1,7 @@
 import consola from 'consola'
 import type { $Fetch } from 'ofetch'
 import { ofetch } from 'ofetch'
+import makeFetchCookie from 'fetch-cookie'
 import { GROQ_API_ENDPOINT } from '../services/groq-web/constants'
 import { COHERE_API_ENDPOINT } from '../services/cohere-web/constants'
 import { Debug } from './log.util'
@@ -16,7 +17,7 @@ export const httpClient: $Fetch = ofetch.create({
   },
 })
 
-export const groqClient: $Fetch = ofetch.create({
+export const _groqClient = ofetch.create({
   baseURL: GROQ_API_ENDPOINT,
   onRequest: (ctx) => {
     Debug.info(`[Groq] Request: ${ctx.request}`)
@@ -25,7 +26,9 @@ export const groqClient: $Fetch = ofetch.create({
     consola.error(`[Groq] Request error`)
     console.error(ctx)
   },
-})
+}).native
+
+export const groqClient = makeFetchCookie(_groqClient, new makeFetchCookie.toughCookie.CookieJar())
 
 export const cohereClient: $Fetch = ofetch.create({
   baseURL: COHERE_API_ENDPOINT,
