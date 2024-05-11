@@ -53,6 +53,21 @@ export function toCamelCaseInObject<T = Record<any, any>>(obj: T) {
   return newObj
 }
 
+export function toSnakeCase(str: string) {
+  return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
+}
+
+export function toSnakeCaseInObject<T = Record<any, any>>(obj: T) {
+  const keys = Object.keys(obj || {})
+  const newObj = {} as T
+  keys.forEach((k) => {
+    (newObj as any)[toSnakeCase(k)] = (obj as any)[k]
+    if (typeof (obj as any)[k] === 'object')
+      (newObj as any)[toSnakeCase(k)] = toSnakeCaseInObject((obj as any)[k])
+  })
+  return newObj
+}
+
 export function getValueFromDotNotation<T = Record<any, any>>(obj: T, key: string) {
   if (key.includes('.')) {
     const keys = key.split('.')

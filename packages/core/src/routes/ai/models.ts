@@ -1,5 +1,6 @@
 import type { RaycastAIModel } from '@ru/shared'
 import { getConfig } from '../../utils/env.util'
+import { toSnakeCase } from '../../utils/others.util'
 import { COHERE_SERVICE_PROVIDERS, GEMINI_SERVICE_PROVIDERS, GROQ_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_GROQ_MODELS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
 
 function generateRaycastAIServiceProviders() {
@@ -13,8 +14,10 @@ function generateRaycastAIServiceProviders() {
           [key: string]: string | undefined
         } = {}
 
-        for (const [key, val] of Object.entries(value.capabilities || {}))
-          capabilities[key] = val ? 'full' : undefined
+        for (const [key, val] of Object.entries(value.capabilities || {})) {
+          const _key = toSnakeCase(key)
+          capabilities[_key] = val ? 'full' : undefined
+        }
 
         return ({
           id: value.id || key,
@@ -32,7 +35,8 @@ function generateRaycastAIServiceProviders() {
           suggestions: ['chat', 'quick_ai', 'commands'],
           in_better_ai_subscription: false,
           requires_better_ai: false,
-          status: value.status || null,
+          // status: value.status || undefined,
+          // status
         } as RaycastAIModel)
       }),
     ])
@@ -57,8 +61,11 @@ function generateRaycastAIServiceProviders() {
           toggleable: boolean
         }
       } = {}
-      for (const [key] of Object.entries(model.capabilities || {}))
-        abilities[key] = { toggleable: true }
+      // for (const [key] of Object.entries(model.capabilities || {})) {
+      //   const _key = toSnakeCase(key)
+      //   abilities[key] = { toggleable: true }
+      // }
+      abilities.web_search = { toggleable: true }
       model.abilities = abilities
     })
   })
@@ -78,6 +85,7 @@ function getDefaultInOpenAIModels() {
         quick_ai: id,
         commands: id,
         api: id,
+        emoji_search: id,
       }
     }
   }

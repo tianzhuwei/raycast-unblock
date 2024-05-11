@@ -14,7 +14,7 @@ export const OPENAI_SERVICE_PROVIDERS: RaycastAIModels = [
     provider_brand: 'openai',
     requires_better_ai: false,
     context: 16,
-    capabilities: { image_generation: 'full', web_search: 'full' },
+    capabilities: { web_search: 'full' },
     suggestions: ['chat', 'quick_ai', 'commands'],
     in_better_ai_subscription: false,
     status: null,
@@ -273,6 +273,7 @@ export const RAYCAST_DEFAULT_MODELS = {
   quick_ai: 'openai-gpt-3.5-turbo',
   commands: 'openai-gpt-3.5-turbo',
   api: 'openai-gpt-3.5-turbo',
+  emoji_search: 'openai-gpt-3.5-turbo',
 }
 
 export const RAYCAST_GEMINI_PRO_ONLY_MODELS = {
@@ -280,6 +281,7 @@ export const RAYCAST_GEMINI_PRO_ONLY_MODELS = {
   quick_ai: 'gemini-pro',
   commands: 'gemini-pro',
   api: 'gemini-pro',
+  emoji_search: 'gemini-pro',
 }
 
 export const RAYCAST_DEFAULT_GROQ_MODELS = {
@@ -287,6 +289,7 @@ export const RAYCAST_DEFAULT_GROQ_MODELS = {
   quick_ai: 'llama3-70b-8192',
   commands: 'llama3-70b-8192',
   api: 'llama3-70b-8192',
+  emoji_search: 'llama3-70b-8192',
 }
 
 export const OPENAI_OFFICIAL_ENDPOINT = 'https://api.openai.com/v1/chat/completions'
