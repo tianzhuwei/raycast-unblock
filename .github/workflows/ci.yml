@@ -123,7 +123,7 @@ jobs:
 
       - name: Upload a Build Artifact to CI Release
         if: github.ref == 'refs/heads/main' && matrix.os == 'macos-latest'
-        uses: WebFreak001/deploy-nightly@v1.1.0
+        uses: WebFreak001/deploy-nightly@v3.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
