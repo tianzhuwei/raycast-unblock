@@ -26,14 +26,14 @@ In general, we recommend deploying your application using *Docker or Docker Comp
 ```bash [Docker Compose]
 wget https://github.com/wibus-wee/raycast-unblock/raw/main/docker-compose.yml
 # ⬆ Modify the environment variables in docker-compose.
-wget https://github.com/wibus-wee/raycast-unblock/raw/main/config.example.toml -o config.toml
+wget https://github.com/wibus-wee/raycast-unblock/raw/main/config.example.toml -O config.toml
 # ⬆ Modify the configurations in config.toml.
 
 docker-compose up -d
 ```
 
 ```bash [Docker]
-wget https://github.com/wibus-wee/raycast-unblock/raw/main/config.example.toml -o config.toml
+wget https://github.com/wibus-wee/raycast-unblock/raw/main/config.example.toml -O config.toml
 # ⬆ Modify the configurations in config.toml.
 
 docker run -d \
