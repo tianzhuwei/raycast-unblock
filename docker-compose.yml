@@ -14,7 +14,7 @@ services:
       # - HTTPS_PROXY=
     # ## If you need to use config.toml file, please uncomment the following line ####
     volumes:
-      - ./configs:/app/config
+      - ./configs:/app/configs
       # If you want to operate the Sync file, you can uncomment the following line
       # - ./raycast_sync:/root/raycast_sync
     ports:
