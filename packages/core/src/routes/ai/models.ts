@@ -61,11 +61,10 @@ function generateRaycastAIServiceProviders() {
           toggleable: boolean
         }
       } = {}
-      // for (const [key] of Object.entries(model.capabilities || {})) {
-      //   const _key = toSnakeCase(key)
-      //   abilities[key] = { toggleable: true }
-      // }
-      abilities.web_search = { toggleable: true }
+      for (const [key] of Object.entries(model.capabilities || {})) {
+        const _key = toSnakeCase(key)
+        abilities[_key] = { toggleable: true }
+      }
       model.abilities = abilities
     })
   })
