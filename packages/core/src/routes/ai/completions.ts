@@ -14,9 +14,7 @@ export async function Completions(request: FastifyRequest, reply: FastifyReply) 
   const provider = (body.provider || config?.default?.toLowerCase()) as keyof typeof config
   if (!(config && provider && config[provider] && !(config[provider] as any).disabled)) {
     consola.warn(`Completions not supported for this model. Please check your config. provider: ${provider}`)
-    reply.status(400).send({
-      error: 'Completions not supported for this model. Please check your config.',
-    })
+    throw new Error('Completions not supported for this model. Please check your config.')
   }
   let completionsHandler: Function | undefined
   switch (provider) {

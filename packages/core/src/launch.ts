@@ -52,6 +52,17 @@ export async function launch() {
     https: certificate ? https : undefined,
   })
 
+  fastify.setErrorHandler((error, request, reply) => {
+    reply.status(500).send({
+      errors: [
+        {
+          status: '500',
+          title: error.message,
+        },
+      ],
+    })
+  })
+
   fastify.register(FastifySSEPlugin)
   fastify.register(fastifyCron, {
     jobs: cronJobs,
