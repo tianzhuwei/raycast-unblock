@@ -86,13 +86,21 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
   }
   else {
     const handlerMessageRecorder: string[] = []
+    // 找到 id: ___ 一样的，object key 不一样的，所以要进去找到对应的 model
+    const modelKey = Object.keys(openaiConfig?.models || {}).find(key => openaiConfig?.models?.[key].id === body.model) || body.model
+    const model = openaiConfig?.models?.[modelKey]
+    const baseURL = model?.baseUrl || openaiConfig?.baseUrl
+    const apiKey = model?.apiKey || openaiConfig?.apiKey
+    const modelId = model?.realId || body.model
+    if (model?.baseUrl)
+      debug.info(`Using custom base URL: ${model.baseUrl} --> ${model.id} --> ${model.realId}`)
     const openai = new OpenAI({
-      baseURL: openaiConfig?.baseUrl,
-      apiKey: openaiConfig?.apiKey,
+      baseURL,
+      apiKey,
     })
 
     const chatConfig = {
-      model: body.model,
+      model: modelId,
       temperature,
       stop: null,
       n: 1,

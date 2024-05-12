@@ -257,7 +257,7 @@ export const COHERE_SERVICE_PROVIDERS: RaycastAIModels = [
     speed: 3,
     intelligence: 3,
     context: 128,
-    suggestions: [],
+    suggestions: ['chat', 'quick_ai', 'commands'],
     features: ['chat', 'quick_ai', 'commands', 'api', 'emoji_search'],
     capabilities: {
       // image_generation: 'null',

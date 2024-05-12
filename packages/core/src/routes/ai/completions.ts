@@ -43,5 +43,6 @@ export async function Completions(request: FastifyRequest, reply: FastifyReply) 
   }
   catch (err) {
     consola.error(err)
+    throw new Error(err as string)
   }
 }

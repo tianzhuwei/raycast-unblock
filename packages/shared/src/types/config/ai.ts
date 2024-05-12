@@ -48,7 +48,10 @@ export interface CohereWebServiceConfig extends AIServiceConfig {
 }
 
 interface AIModelConfig extends Omit<RaycastAIModel, 'capabilities'> {
-  capabilities: {
+  baseUrl?: string // Special endpoint for the model
+  apiKey?: string // API key for the model
+  realId?: string // Real ID for the model
+  capabilities?: {
     imageGeneration: boolean
     webSearch: boolean
   }
