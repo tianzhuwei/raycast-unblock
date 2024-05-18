@@ -70,12 +70,20 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, macos-13]
       fail-fast: false
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set package platform
+        run: |
+          if [[ ${{ matrix.os }} == 'macos-latest' ]]; then
+            echo "PACKAGE_ARCH=arm" >> $GITHUB_ENV
+          else
+            echo "PACKAGE_ARCH=intel" >> $GITHUB_ENV
+          fi
+          echo "PACKAGE_ARCH is set to $PACKAGE_ARCH"
       - name: Install pnpm
         uses: pnpm/action-setup@v3
 
@@ -93,7 +101,9 @@ jobs:
       - name: Build
         run: |
           nr build:core
+          # mv packages/core/dist/index.js dist/index.js
           sh scripts/single-application.sh
+          file dist/raycast-unblock-app
 
       - name: Build Raycast Extension (macOS Only)
         if: matrix.os == 'macos-latest'
@@ -101,7 +111,7 @@ jobs:
           nr build:ray
           mv packages/raycast/dist dist/raycast-unblock
           cd dist
-          zip -r raycast-unblock.zip raycast-unblock
+          zip -r raycast-unblock-extension.zip raycast-unblock
 
       - name: Upload Artifact for JS
         uses: actions/upload-artifact@v4
@@ -112,7 +122,7 @@ jobs:
       - name: Upload Artifact for App
         uses: actions/upload-artifact@v4
         with:
-          name: raycast-unblock-${{ matrix.os }}-app
+          name: raycast-unblock-${{ matrix.os }}-${{ env.PACKAGE_ARCH }}-app
           path: dist/raycast-unblock-app
       - name: Upload Artifact for Raycast Extension
         if: matrix.os == 'macos-latest'
@@ -139,15 +149,22 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, macos-13]
 
     steps:
       - uses: actions/checkout@v4
-
+      - name: Set package platform
+        run: |
+          if [[ ${{ matrix.os }} == 'macos-latest' ]]; then
+            echo "PACKAGE_ARCH=arm" >> $GITHUB_ENV
+          else
+            echo "PACKAGE_ARCH=intel" >> $GITHUB_ENV
+          fi
+          echo "PACKAGE_ARCH is set to $PACKAGE_ARCH"
       - name: Download Artifact for App
         uses: actions/download-artifact@v4
         with:
-          name: raycast-unblock-${{ matrix.os }}-app
+          name: raycast-unblock-${{ matrix.os }}-${{ env.PACKAGE_ARCH }}-app
 
       - name: Run test
         run: |
