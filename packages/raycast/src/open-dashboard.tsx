@@ -22,6 +22,7 @@ export function Home() {
       token: build(API_USERS).token,
     },
   })
+  const { data: indexData } = useFetch<any>(build('/').url)
   const { data: modelsData, revalidate } = useFetch<{
     default_models: Record<string, string>
     models: RaycastAIModels
@@ -54,6 +55,16 @@ export function Home() {
 
   return (
     <List isShowingDetail={isShowingDetail} isLoading={isLoading}>
+      <List.Item
+        title="Raycast Unblock is running"
+        icon="🚀"
+        subtitle={preferences.apiUrl}
+        accessories={[
+          {
+            text: indexData?.version || 'Unknown version',
+          },
+        ]}
+      />
       <Users />
       <Models />
     </List>
