@@ -6,7 +6,7 @@ import consola from 'consola'
 import { FastifySSEPlugin } from 'fastify-sse-v2'
 import fastifyCompress from '@fastify/compress'
 import fastifyCron from 'fastify-cron'
-import packageJson from '../package.json'
+import packageJson from '../../../package.json'
 import { MeRoute } from './routes/me'
 import { httpClient } from './utils'
 import { AIRoute } from './routes/ai'
@@ -81,7 +81,7 @@ export async function launch() {
 
   fastify.get('/', async (_request, _reply) => {
     return {
-      name: packageJson.name,
+      name: 'raycast-unblock',
       version: packageJson.version,
       author: packageJson.author,
     }
