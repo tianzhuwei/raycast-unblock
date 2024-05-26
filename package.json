@@ -52,17 +52,17 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.16.4",
-    "@types/node": "^20.12.11",
+    "@types/node": "^20.12.12",
     "bumpp": "^9.4.1",
     "eslint": "^9.2.0",
-    "lint-staged": "^15.2.2",
+    "lint-staged": "^15.2.5",
     "pnpm": "^9.0.6",
     "simple-git-hooks": "^2.11.1",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"
   },
   "resolutions": {
-    "@babel/traverse": "7.24.5"
+    "@babel/traverse": "7.24.6"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
