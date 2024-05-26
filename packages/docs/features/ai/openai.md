@@ -34,6 +34,7 @@ Other parameters you can see in the example below.
     - `base_url`: The base URL of the model. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
     - `api_key`: The API key of the model. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
     - `real_id`: The real id of the model. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
+    - `provider_name`: The provider name of the model. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
     - `id`: The model id. It should be unique.
     - `model`: The model name.
     - `name`: The model name.

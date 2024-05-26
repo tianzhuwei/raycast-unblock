@@ -29,7 +29,8 @@ function generateRaycastAIServiceProviders() {
           model: value.model || key,
           name: value.name || key,
           provider: 'openai',
-          provider_name: 'OpenAI',
+          // Config processing will convert key to providerName, so it needs to be processed here
+          provider_name: (value as any).providerName || 'OpenAI',
           provider_brand: 'openai',
           speed: Number(value.speed) || 3,
           intelligence: Number(value.intelligence) || 3,
