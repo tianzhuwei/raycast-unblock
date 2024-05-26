@@ -6,7 +6,6 @@ import { getConfig } from './utils/env.util'
 export const cronJobs: (Params | FalsyValue)[] = [
   {
     cronTime: '0 0 * * *', // 每天0点
-    runOnInit: true,
     onTick: async () => {
       Promise.all([
         checkLatestVersion(),

@@ -6,7 +6,6 @@ import consola from 'consola'
 import { FastifySSEPlugin } from 'fastify-sse-v2'
 import fastifyCompress from '@fastify/compress'
 import fastifyCron from 'fastify-cron'
-import packageJson from '../../../package.json'
 import { MeRoute } from './routes/me'
 import { httpClient } from './utils'
 import { AIRoute } from './routes/ai'
@@ -18,6 +17,7 @@ import { type SelfSignedCertificate, createSelfSignedCertificate } from './utils
 import { cronJobs } from './cron-jobs'
 import { InternalRoute } from './routes/_internal'
 import { ExtensionsRoute } from './routes/extensions'
+import { PACKAGE_JSON } from './constants'
 
 const prefix = '/api/v1'
 
@@ -82,8 +82,8 @@ export async function launch() {
   fastify.get('/', async (_request, _reply) => {
     return {
       name: 'raycast-unblock',
-      version: packageJson.version,
-      author: packageJson.author,
+      version: PACKAGE_JSON.version,
+      author: PACKAGE_JSON.author,
     }
   })
 
@@ -119,7 +119,7 @@ export async function launch() {
   })
 
   consola.info(`Raycast Unblock`)
-  consola.info(`Version: ${packageJson.version}`)
+  consola.info(`Version: ${PACKAGE_JSON.version}`)
   consola.info('Server starting...')
 
   if (!certificate && config?.port === 443)
