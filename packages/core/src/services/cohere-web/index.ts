@@ -34,7 +34,7 @@ export async function cohereWebLogin(force = false): Promise<CohereWebAuthV2Resp
   if (!config)
     return
 
-  const debug = Debug.create('cohere-web')
+  const debug = Debug.create('service:cohere-web')
   debug.info('Logging in to cohere...')
 
   const tokens = getCache<CohereWebAuthV2Response>('cohere', 'web')
@@ -73,7 +73,7 @@ export async function cohereWebGetOrCreateDefaultAPIKey(): Promise<CohereWebGetO
   const config = getConfig('ai')?.cohere
   if (!config)
     return
-  const debug = Debug.create('cohere-web')
+  const debug = Debug.create('service:cohere-web')
 
   // Get or create default API key
   const res = await cohereClient<CohereWebGetOrCreateDefaultAPIKeyResponse>(COHERE_API_GET_OR_CREATE_DEFAULT_API_KEY, {

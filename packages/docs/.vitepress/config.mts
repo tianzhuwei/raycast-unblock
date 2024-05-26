@@ -28,6 +28,17 @@ export default defineConfig({
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+
+    editLink: {
+      pattern: 'https://github.com/wibus-wee/raycast-unblock/edit/main/packages/docs/:path',
+      text: 'Edit this page on GitHub',
+    },
+
+    footer: {
+      message: 'Released under MIT. Created on Feb 2, 2024',
+      copyright: 'raycast-unblock © Wibus',
+    },
+
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/what-is-raycast-unblock' },

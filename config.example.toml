@@ -1,3 +1,16 @@
+# ##
+#
+# [DANGER]
+# The example file here is outdated,
+# please visit the official documentation to get the latest configuration file example.
+#
+# 🔗 https://wibus-wee.github.io/raycast-unblock/
+#
+# [WARNING]
+# The example file here only keeps the minimum available configuration,
+# please refer to the official documentation for more configuration items.
+# ##
+
 [General]
 # If you deploy this service on a remote server,
 # it is recommended to set mode to "remote", maybe one day this program will be used
@@ -108,8 +121,8 @@ default = "deeplx"
 # [Translate.Shortcuts]
 
 [Translate.DeepLX]
-# proxy_endpoint = ""
-# access_token = ""
+# proxy_endpoints = []
+# access_tokens = []
 
 [Translate.AI]
 # If the default model is not set,

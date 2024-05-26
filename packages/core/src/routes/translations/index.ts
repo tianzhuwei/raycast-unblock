@@ -11,28 +11,32 @@ export function TranslationsRoute(fastify: FastifyInstance, opts: Record<any, an
   fastify.post('/', async (request: FastifyRequest, reply: FastifyReply) => {
     const config = getConfig('translate')
     Debug.info('[GET] /translations --> Local Handler')
-    let res
+    let handler
     Debug.info(`[GET] /translations --> Local Handler --> ${config?.default || 'deeplx'}`)
     switch (config?.default?.toLowerCase() || 'deeplx') {
       case 'shortcut':
-        res = await TranslateWithShortcut(request)
+        handler = TranslateWithShortcut
         break
       case 'ai':
-        res = await TranslateWithAI(request)
+        handler = TranslateWithAI
         break
       case 'deeplx':
-        res = await TranslateWithDeepLX(request)
+        handler = TranslateWithDeepLX
         break
       case 'libre_translate':
-        res = await TranslateWithLibreTranslate(request)
+        handler = TranslateWithLibreTranslate
         break
       case 'google':
-        res = await TranslateWithGoogle(request)
+        handler = TranslateWithGoogle
         break
       default:
-        res = await TranslateWithDeepLX(request)
+        handler = TranslateWithDeepLX
         break
     }
+    const res = await handler(request).catch((e) => {
+      Debug.error('[GET] /translations --> Local Handler --> Error', e)
+      return e
+    })
     Debug.info('[GET] /translations <-- Local Handler')
     return reply.send(res)
   })

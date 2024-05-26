@@ -2,7 +2,11 @@
 
 You can use DeepL to translate text in Raycast Translate feature.
 
-> This feature is provided by [OwO-Network/DeepLX](https://github.com/OwO-Network/DeepLX) package.
+::: warning Configuration Change in <Badge text="^0.5.0-beta.2" type="warning" />
+We have changed the configuration structure for DeepL. Please update your configuration file.
+
+And we support *multiple DeepL endpoints and access tokens* now.
+:::
 
 ## Usage
 
@@ -10,13 +14,26 @@ You can use DeepL to translate text in Raycast Translate feature.
 
 ## Configuration
 
-- `proxy_endpoint`: The proxy endpoint for DeepL API. <Badge type="info" text="Optional" />
-- `access_token`: The access token for DeepL API. <Badge type="info" text="Optional" />
+- `check_available`: Check if the DeepL API is available or not. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
+- `concurrency`: The concurrency of the DeepL API. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
+- `proxy_endpoints`: The proxy endpoints for DeepL API. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
+- `access_tokens`: The access tokens for DeepL API. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
+
+::: warning
+Please note that `proxy_endpoints` and `access_tokens` should be **one-to-one**.
+
+If some `proxy_endpoints` do not have corresponding `access_tokens`, please set them to `'' (empty)`.
+:::
+
+- ~~`proxy_endpoint`: The proxy endpoint for DeepL API.~~ <Badge type="danger" text="Deprecated (^v0.5.0-beta.2)" />
+- ~~`access_token`: The access token for DeepL API.~~ <Badge type="danger" text="Deprecated (^v0.5.0-beta.2)" />
 
 ## Example
 
 ```toml
 [Translate.DeepLX]
-proxy_endpoint = "<your-proxy-endpoint>"
-access_token = "<your-access-token>"
+# check_available = true
+# concurrency = 2
+# proxy_endpoints = []
+# access_tokens = []
 ```

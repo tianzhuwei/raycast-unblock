@@ -6,7 +6,7 @@ import { getConfig } from '../../utils/env.util'
 
 export async function TranslateWithLibreTranslate(request: FastifyRequest): Promise<TranslateTo> {
   const body = request.body as TranslateFrom
-  const config = getConfig('translate')?.libreTranslate
+  const config = getConfig('translate')?.libretranslate
   let content
   switch (config?.type?.toLowerCase() || 'reverse') {
     case 'reverse':

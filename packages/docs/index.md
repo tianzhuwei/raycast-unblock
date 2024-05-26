@@ -20,13 +20,22 @@ hero:
 features:
   - title: Customize AI Chat Models
     icon: 🤖️
-    details: You can interact with various AI models. We have also implemented Function Call and its associated tooling to explore the full capabilities of Raycast AI.
+    details: You can interact with various AI models. With Function Call, you can use AI models with full power.
   - title: Various Translation Providers
     icon: 🌟
-    details: We've built in a variety of translation modes. You can utilize AI-powered, DeepL, Google Translate, and Apple Shortcut for effortless translation!
+    details: We've built in a variety of translation modes. You can utilize AI-powered, DeepL... and more translation providers.
+  - title: Auto-Balance Translation
+    icon: ⚖️
+    details: You can use the Auto-Balance Translation feature to automatically balance the translation speed and quality.
   - title: Powerful Cloud Sync
     icon: ☁️
-    details: We also support cross-device synchronization using iCloud in Cloud Sync, and of course, we also provide a local storage option.
+    details: Cross-device synchronization using iCloud in Cloud Sync, and you can also use other cloud services.
+  - title: Customizable Theme
+    icon: 🎨
+    details: With the help of Raycast Unblock, you can customize the theme of Raycast to your liking.
+  - title: Unlimited Clipboard History
+    icon: 📋
+    details: You can access an unlimited clipboard history with Raycast Unblock. You can also use the clipboard history to search for items.
 ---
 
 <style>

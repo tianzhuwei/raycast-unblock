@@ -1,12 +1,14 @@
 export interface TranslateConfig {
   default?: string
-  deepLX?: DeepLXTranslateServiceConfig
+  deeplx?: DeepLXTranslateServiceConfig
   ai?: AITranslateServiceConfig
-  libreTranslate?: LibreTranslateServiceConfig
+  libretranslate?: LibreTranslateServiceConfig
 }
 export interface DeepLXTranslateServiceConfig {
-  proxyEndpoint?: string
-  accessToken?: string
+  checkAvailable?: boolean
+  proxyEndpoints?: string[]
+  accessTokens?: string[]
+  concurrency?: number
 }
 export interface AITranslateServiceConfig {
   default?: string

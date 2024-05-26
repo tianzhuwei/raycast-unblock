@@ -46,6 +46,26 @@ function checkDefault(env: Config) {
   return env
 }
 
+function restoreArray(value: { [key: string]: any }) {
+  // In TOML parser, an array is parsed as an object: { 0: 'value1', 1: 'value2' }
+  // This function restores the array
+  if (Array.isArray(value))
+    return value
+
+  if (typeof value === 'object') {
+    const keys = Object.keys(value)
+    if (keys.every(k => !Number.isNaN(Number.parseInt(k)))) // Check if the object is an array
+      return keys.map(k => value[k])
+
+    for (const key in value) // Recursion
+      value[key] = restoreArray(value[key])
+
+    return value
+  }
+
+  return value
+}
+
 /**
  * Injects environment variables from a configuration file.
  *
@@ -69,6 +89,7 @@ export function injectEnv() {
     let env = TOML.parse(fs.readFileSync(config, 'utf-8')) as Config
     env = tolowerCaseInObject(env)
     env = toCamelCaseInObject(env)
+    env = restoreArray(env) as Config
     env = checkDefault(env)
     process.env.config = JSON.stringify(env)
     process.env.configPath = config
