@@ -7,7 +7,8 @@ import { Debug } from '../utils/log.util'
 import { getConfig } from '../utils/env.util'
 
 export async function checkGroqModels() {
-  const config = getConfig('ai')?.groq?.refreshToken
+  const groqC = getConfig('ai')?.groq
+  const config = groqC?.refreshToken && !groqC?.disable
   if (!config)
     return
   const debug = Debug.create('crons:checkGroqModels')
