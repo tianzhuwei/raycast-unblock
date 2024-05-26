@@ -5,7 +5,9 @@ Raycast Unblock offers Cohere Web AI support. You can use Cohere's models for fr
 ::: warning
 This is an inverted API. Please use with caution.
 
-In general, we recommend that you use [Cohere's official API](./cohere) instead of Cohere Web.
+In the following, we found that Cohere Web also uses Cohere's official API, but with some special handling in transmission. It *still has the same Rate Limit issue* as the API.
+
+**Therefore, we recommend that you use [Cohere's official API](./cohere).**
 :::
 
 ::: tip

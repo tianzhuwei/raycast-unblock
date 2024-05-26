@@ -38,16 +38,17 @@ export interface GeminiServiceConfig extends AIServiceConfig {}
 
 export interface GroqServiceConfig extends Omit<AIServiceConfig, 'apiKey'> {
   refreshToken?: string
-  default: string
+  default?: string
 }
 
 export interface CohereWebServiceConfig extends AIServiceConfig {
+  default?: string
   type?: 'api' | 'web'
   email?: string
   password?: string
 }
 
-interface AIModelConfig extends Omit<RaycastAIModel, 'capabilities'> {
+export interface AIModelConfig extends Omit<RaycastAIModel, 'capabilities'> {
   baseUrl?: string // Special endpoint for the model
   apiKey?: string // API key for the model
   realId?: string // Real ID for the model

@@ -8,7 +8,14 @@ Raycast Unblock currently supports multiple AI models and APIs. You can see whic
 
 The configuration for AI features includes the following parameters:
 
-- `default`: The default AI model or API to use.
+- `default`: The default AI Server to use.
+
+::: warning
+The `default` parameter is used to set the default AI service to use. It may be used in other AI-related features, such as Search Emoji with AI Results.
+
+Moreover, in specific AI services, the `default` parameter will be used to set the default model to use. Of course, it is *optional*.
+:::
+
 - `temperature`: The temperature of the model. <Badge type="info" text="Optional" />
 - `max_tokens`: The maximum tokens of the model. <Badge type="info" text="Optional" />
 

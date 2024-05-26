@@ -25,6 +25,7 @@ The configuration for this feature includes the following parameters:
 - `api_key`: Your Cohere API key.
 - `temperature`: The temperature of the model. <Badge type="info" text="Optional" />
 - `max_tokens`: The maximum tokens of the model. <Badge type="info" text="Optional" />
+- `default`: The default model to use. <Badge type="info" text="Optional" /> <Badge type="warning" text="^v0.5.0-beta.2" />
 
 ### Example
 

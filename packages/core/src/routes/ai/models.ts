@@ -1,4 +1,4 @@
-import type { RaycastAIModel } from '@ru/shared'
+import type { AIConfig, AIModelConfig, OpenAIServiceConfig, RaycastAIModel } from '@ru/shared'
 import { getConfig } from '../../utils/env.util'
 import { toSnakeCase } from '../../utils/others.util'
 import { COHERE_SERVICE_PROVIDERS, GEMINI_SERVICE_PROVIDERS, GROQ_SERVICE_PROVIDERS, OPENAI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_GROQ_MODELS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from './constants'
@@ -75,22 +75,43 @@ function generateRaycastAIServiceProviders() {
   return default_models.flat()
 }
 
-function getDefaultInOpenAIModels() {
-  const openaiConfig = getConfig('ai')?.openai
-  let default_model = RAYCAST_DEFAULT_MODELS
-  if (openaiConfig?.default) {
-    const model = openaiConfig.models?.[openaiConfig.default]
-    if (model) {
-      const id = model.id || openaiConfig.default
+type AIServiceConfigWithNoSingleModel = Omit<AIConfig, 'default' | 'temperature' | 'maxTokens' | 'functions' | 'gemini'>
 
-      default_model = {
-        chat: id,
-        quick_ai: id,
-        commands: id,
-        api: id,
-        emoji_search: id,
-      }
+function getDefaultInModels(ai: keyof AIServiceConfigWithNoSingleModel) {
+  const aiConfig = (getConfig('ai') as AIServiceConfigWithNoSingleModel)?.[ai]
+
+  if (aiConfig?.disable)
+    return RAYCAST_DEFAULT_MODELS
+
+  let default_model = RAYCAST_DEFAULT_MODELS
+  let id = aiConfig?.default || RAYCAST_DEFAULT_MODELS.api
+
+  if (aiConfig?.default) {
+    if (ai === 'openai') {
+      const model = (aiConfig as OpenAIServiceConfig).models?.[aiConfig.default] || {} as AIModelConfig
+      if (model)
+        id = model.id || aiConfig.default
     }
+  }
+  else {
+    switch (ai) {
+      case 'groq':
+        id = RAYCAST_DEFAULT_GROQ_MODELS.api
+        break
+      case 'cohere':
+        id = 'command-r-plus'
+        break
+      default:
+        break
+    }
+  }
+
+  default_model = {
+    chat: id,
+    quick_ai: id,
+    commands: id,
+    api: id,
+    emoji_search: id,
   }
 
   return default_model
@@ -100,17 +121,11 @@ export function AIModels() {
   const config = getConfig('ai')
   let default_models
   switch (config?.default?.toLowerCase()) {
-    case 'openai':
-      default_models = getDefaultInOpenAIModels()
-      break
     case 'gemini':
       default_models = RAYCAST_GEMINI_PRO_ONLY_MODELS
       break
-    case 'groq':
-      default_models = RAYCAST_DEFAULT_GROQ_MODELS
-      break
     default:
-      default_models = getDefaultInOpenAIModels()
+      default_models = getDefaultInModels(config?.default?.toLowerCase() as keyof AIServiceConfigWithNoSingleModel)
       break
   }
   const models = generateRaycastAIServiceProviders()
