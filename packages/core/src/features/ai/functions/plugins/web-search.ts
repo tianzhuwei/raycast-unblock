@@ -40,7 +40,7 @@ export async function WebSearch(query: string) {
 
 export const WebSearchConfig: IAvailableFunction = {
   id: 'web_search',
-  description: 'Search for information from the internet',
+  description: 'Search for information from the internet. Only use this function if you are unable to find the information in the provided references.',
   paramters: {
     type: 'object',
     properties: {
