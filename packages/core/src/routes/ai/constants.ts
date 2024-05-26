@@ -182,6 +182,24 @@ export const COHERE_SERVICE_PROVIDERS: RaycastAIModels = [
     in_better_ai_subscription: false,
     status: null,
   },
+  {
+    id: 'c4ai-aya-23',
+    model: 'c4ai-aya-23',
+    name: 'C4AI Aya 23',
+    description: `C4AI Aya 23 is a research open weights release of an 8 and 35 billion parameter with highly advanced instruction fine-tuned model, covering 23 languages.\nNote: Aya 23 is a single-turn instruction-following model and it is not optimized for chat mode use.\n`,
+    provider: 'cohere',
+    provider_name: 'Cohere',
+    provider_brand: 'openai',
+    requires_better_ai: false,
+    speed: 4,
+    intelligence: 3,
+    context: 8,
+    suggestions: ['quick_ai'],
+    features: ['chat', 'quick_ai', 'commands', 'api', 'emoji_search'],
+    capabilities: {},
+    in_better_ai_subscription: false,
+    status: null,
+  },
 ]
 
 export const RAYCAST_DEFAULT_MODELS = {
