@@ -67,10 +67,9 @@ export async function checkDeepLXEndpoints() {
   logger.info(`Available DeepLX endpoints: ${availableEndpoints.length}`)
   logger.info(`Unavailable DeepLX endpoints: ${unavailableEndpoints.length}`)
   if (unavailableEndpoints.length > 0) {
-    logger.warn(`Recommended you to modify the configuration file like this:`)
+    logger.warn(`Following DeepLX endpoints are unavailable:`)
     logger.log(`
-  proxy_endpoints = ${JSON.stringify(availableEndpoints.map(item => item.proxyEndpoint))}
-  access_tokens = ${JSON.stringify(availableEndpoints.map(item => item.accessToken))}
+${unavailableEndpoints.map(v => `Proxy: ${v.proxyEndpoint} | AccessToken: ${v.accessToken}`).join('\n')}
     `)
   }
 
