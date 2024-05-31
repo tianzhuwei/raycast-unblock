@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.16.4",
-    "@types/node": "^20.12.13",
+    "@types/node": "^20.12.14",
     "bumpp": "^9.4.1",
     "eslint": "^9.2.0",
     "lint-staged": "^15.2.5",
