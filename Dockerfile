@@ -12,7 +12,7 @@ RUN pnpm install
 RUN pnpm build:core
 RUN pnpm bundle
 
-FROM --platform=$BUILDPLATFORM alpine:3.19 AS runner
+FROM --platform=$BUILDPLATFORM alpine:3.20 AS runner
 
 RUN apk add --no-cache libstdc++
 
