@@ -177,10 +177,10 @@ export async function OpenAIChatCompletion(request: FastifyRequest, reply: Fasti
           yield { data: mes }
 
         for await (const data of stream) {
-          const { choices: [{ delta: { content } }] } = data
           const choice = data.choices[0]
           if (!choice)
             continue
+          const { choices: [{ delta: { content } }] } = data
 
           let finish_reason
 
